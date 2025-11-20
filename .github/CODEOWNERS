@@ -1,0 +1,14 @@
+# Main protection
+/ @PIA-25/admins
+
+# Backend
+/backend/ @PIA-25/backend-team
+
+# Frontend
+/frontend/ @PIA-25/frontend-team
+
+# Game
+/game/ @PIA-25/game-team
+
+# AI
+/ai/ @PIA-25/ai-team
