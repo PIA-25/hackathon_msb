@@ -1,94 +1,176 @@
-# Developer Onboarding Guide
+# PIA-25 — Full Developer Cheat Sheet (Complete Handbook)
 
-Welcome! This guide explains how to start working in this project.
+> Full, copy‑pasteable guide for students and admins. Covers cloning, SSH, GPG commit signing, branches, PRs, branch rules, CODEOWNERS, reviewers, and troubleshooting. Follow exactly.
 
 ---
 
-## 1. Clone the repo
+## Table of contents
 
-git clone git@github.com
+1. Quick TL;DR commands
+2. Clone the repo (SSH recommended)
+3. SSH keys (create, add to GitHub)
+4. GPG commit signing (create, add to GitHub, configure Git)
+5. Branching model & who works where
+6. Daily workflow (per‑team cheat commands)
+7. Creating a proper PR (step‑by‑step)
+8. How to handle reviews & approvals
+9. Branch protection rules & codeowners (what they enforce)
+10. Common problems + fixes
+11. Admin notes (merge, force, bypass)
+12. Useful references & screenshots
+
+---
+
+# 1) Quick TL;DR — common commands
+
+```bash
+git clone git@github.com:PIA-25/hackathon_msb.git
 cd hackathon_msb
 
+git fetch --all
+git branch -a
+
+git checkout develop
+git checkout -b feature/yourname/short-descr
+
+git add .
+git commit -S -m "feat: short description"
+git push -u origin feature/yourname/short-descr
+```
 
 ---
 
-## 2. Branch workflow
+# 2) Clone the repo (SSH recommended)
 
-- **main** → stable, protected, production-ready
-- **develop** → integration branch
-- **backend**, **frontend**, **game**, **ai** → team workspaces
+**Why SSH?** It's secure and avoids repeated username/password prompts.
 
-### Create feature branches from your team branch:
-Examples:
-#----------#
-# Backend: #
-#----------#--------------------------#
-git checkout backend                  #
-git checkout -b backend/feature-login #
---------------------------------------#
-#----------#
-# Frontend:#
-#----------#-----------------------#
-git checkout frontend              #
-git checkout -b frontend/ui-navbar #
------------------------------------#
-#----------#
-# AI-team: #      
-#----------#---------------------------#
-git checkout ai                        #
-git checkout -b ai/prompt-improvements #
----------------------------------------#
-#------------#
-# Game-team: #
-#------------#-----------------------#
-git checkout game                    #
-git checkout -b game/physics-update  #
--------------------------------------#
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+```
 
-
+Add the pub key to GitHub → Settings → SSH & GPG Keys.
 
 ---
 
-## 3. PR Rules
+# 3) GPG commit signing — setup
 
-- All PRs go into your **team branch**
-- 1 approval required
-- Commits MUST be signed
-- No direct pushes to main or develop
-- Use the PR template
+```bash
+gpg --full-generate-key
+gpg --list-secret-keys --keyid-format=long
+gpg --armor --export <KEY_ID>
+```
 
----
+Add exported key to GitHub → New GPG Key.
 
-## 4. Commit signing (mandatory)
+Configure Git:
 
-See `docs/SIGNING.md`
-
----
-
-## 5. Folder structure
-
-- `/backend`  
-- `/frontend`  
-- `/game`  
-- `/ai`  
-- `/docs`  
-- `/.github`  
+```bash
+git config --global user.signingkey <KEY_ID>
+git config --global commit.gpgsign true
+git config --global gpg.program gpg
+git config --global user.email "<your-noreply-email>"
+```
 
 ---
 
-## 6. General workflow summary
+# 4) Branching model & where to work
 
-1. Pull the latest changes  
-2. Create a feature branch  
-3. Write code  
-4. Commit (signed)  
-5. Push  
-6. Create a PR  
-7. Get review  
-8. Merge into your team branch  
-9. Team merges into develop  
-10. Approval before merging into main
+* **main**: production (strict)
+* **develop**: integration
+* **backend**, **frontend**, **game**, **ai**: team branches
+* **feature/**yourname/***: short-lived branches
 
 ---
 
-You’re ready to contribute!
+# 5) Daily workflow (per team)
+
+Example backend workflow:
+
+```bash
+git checkout backend
+git pull origin backend
+git checkout -b feature/yourname/task
+# code
+git add .
+git commit -S -m "feat(backend): add X"
+git push -u origin feature/yourname/task
+```
+
+---
+
+# 6) Creating a proper PR
+
+* Base: `develop`
+* Compare: your feature branch
+* Title format: `type(scope): summary`
+* Include Summary / How to Test / Notes
+
+---
+
+# 7) Approvals & merging
+
+* Authors **cannot approve** their own PR
+* Must get review from the correct team
+* After approval → Merge
+
+---
+
+# 8) CODEOWNERS & protections
+
+```
+/ @PIA-25/admins
+/backend/* @PIA-25/backend-team
+/frontend/* @PIA-25/frontend-team
+/game/* @PIA-25/game-team
+/ai/* @PIA-25/ai-team
+```
+
+---
+
+# 9) Common problems & fixes
+
+* SSH failure → check `ssh -T git@github.com`
+* GPG failure → email mismatch or missing private key
+* Cannot approve → author can't approve their own PR
+
+---
+
+# 10) Admin tasks
+
+* Merge approved PR
+* Revert with GitHub's **Revert** button
+* Toggle bypass settings only during emergencies
+
+---
+
+# 11) Team quick cheats
+
+Backend:
+
+```bash
+git checkout backend
+git pull
+git checkout -b feature/name
+```
+
+Frontend/Game/AI same flow.
+
+---
+
+# 12) Troubleshooting
+
+1. Check branch: `git branch`
+2. Pull latest: `git pull`
+3. Signed commit: `git log --show-signature -1`
+4. GPG added to GitHub?
+
+---
+
+# Final notes
+
+* Always use feature branches
+* Always sign commits
+* Always use PRs → no direct pushes
+* Keep PRs small & clear
