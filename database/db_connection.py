@@ -28,7 +28,6 @@ def close_connection(connection):
         print("Anslutning stängd.")
 
 
-#testkod som körs när filen körs direkt
 if __name__ == '__main__':
     print("Testar anslutningen...")
     connection = create_connection()
