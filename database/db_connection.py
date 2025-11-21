@@ -27,7 +27,7 @@ def close_connection(connection):
         connection.close()
         print("Anslutning stängd.")
 
-
+#  testa anslutningen för att se om det fungerar
 if __name__ == '__main__':
     print("Testar anslutningen...")
     connection = create_connection()
