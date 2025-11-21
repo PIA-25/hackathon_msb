@@ -5,7 +5,7 @@ DATABASE_URL = "postgresql://postgres:namn@localhost:5432/dbnamn"
 
 engine = create_engine(
     DATABASE_URL,
-    echo=False )
+    echo=True )
 
 def create_connection():
     """Skapar och returnerar en anslutning till PostgreSQL-databasen."""
