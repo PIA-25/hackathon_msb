@@ -8,7 +8,7 @@ engine = create_engine(
     echo=True )
 
 def create_connection():
-    """Skapar och returnerar en anslutning till PostgreSQL-databasen."""
+    #Skapar och returnerar en anslutning till PostgreSQL-databasen.
     try:
         connection = engine.connect()
         print("Anslutning till PostgreSQL lyckades")
@@ -22,7 +22,7 @@ def create_connection():
         return None
 
 def close_connection(connection):
-    """Stänger databasanslutningen."""
+    #Stänger databasanslutningen.
     if connection:
         connection.close()
         print("Anslutning stängd.")
