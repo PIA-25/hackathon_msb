@@ -15,13 +15,15 @@ COLORS = {
     # Unified blue theme - allt går ihop!
     'accent_primary': '#3b82f6',         # Medium blue (primary color)
     'accent_bright': '#60a5fa',          # Bright blue (highlights)
-    'accent_dark': '#2563eb',            # Dark blue (hover states)
+    'accent_dark': '#1e3a8a',            # Dark blue (hover states)
+    
+    'button_blue': '#12224f',
     
     # Text colors
     'text_white': '#ffffff',
     'text_blue': '#93c5fd',              # Light blue text
     'text_muted': '#6b9bd1',             # Muted blue text
-    
+    'hero_title': "#a1cafa",
     # Borders
     'border_blue': '#1e3a5f',
     'border_card': '#1a3050',
@@ -29,11 +31,11 @@ COLORS = {
 
 # === SIZES ===
 SIZES = {
-    'hero_title': '80px',
+    'hero_title': '70px',
     'section_title': '52px',
     'card_title': '26px',
-    'subtitle': '26px',
-    'body': '18px',
+    'subtitle': '28px',
+    'body': '20px',
     'small': '15px',
     
     'icon_large': '6rem',

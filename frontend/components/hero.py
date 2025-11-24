@@ -15,9 +15,9 @@ def create_hero_section():
     with ui.column().classes('w-full items-center justify-center').style(
         f'min-height: 100vh; '
         f'background-image: {background_image}; '
-        f'background-size: cover; '           # Täcker hela området
-        f'background-position: center; '      # Centrerar bilden
-        f'background-repeat: no-repeat; '     # Ingen upprepning
+        f'background-size: cover; '   
+        f'background-position: center; ' 
+        f'background-repeat: no-repeat; '
         f'position: relative'
     ):
         
@@ -27,32 +27,33 @@ def create_hero_section():
             'left: 0; '
             'width: 100%; '
             'height: 100%; '
-            'background: rgba(1, 5, 16, 0.7); '  # Mörk overlay (70% opacity)
+            'background: rgba(1, 5, 16, 0.88); '
             'z-index: 0'
         )
     
         with ui.column().classes('items-center').style('position: relative; z-index: 1'):
             
-            # Icon with blue glow
-            ui.icon('psychology', size=SIZES['icon_large']).style(
-                f'color: {COLORS["accent_bright"]}; '
-                f'margin-bottom: 2rem; '
+            # Our icon for the game
+            ui.image('/assets/logo_icon.png').style(
+                'width: 160px; '
+                'height: 140px; '
+                'margin-bottom: 2rem; '
                 f'filter: drop-shadow({EFFECTS["glow_medium"]})'
             )
             
-            # Main title - bright blue!
+            # Main title
             ui.label('PRODUKTNAMN').style(
-                f'color: {COLORS["accent_bright"]}; '
-                f'font-size: {SIZES["hero_title"]}; '
-                f'font-weight: bold; '
-                f'text-align: center; '
-                f'letter-spacing: 8px; '
-                f'text-shadow: {EFFECTS["glow_medium"]}; '
-                f'margin-bottom: 1.5rem'
+                f'color: {COLORS["hero_title"]}; '
+                f'font-size: {SIZES["hero_title"]}; ' 
+                'font-weight: 700; '
+                'text-align: center; '
+                'letter-spacing: 15px; '
+                'text-shadow: 0 0 30px rgba(96, 165, 250, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6); '
+                'margin-bottom: 2.5rem'
             )
             
             # Subtitle
-            ui.label('AI-Driven Beslutsanalys i Krigsscenarier').style(
+            ui.label('AI-Driven Beslutsanalys i Krissituationer').style(
                 f'color: {COLORS["text_blue"]}; '
                 f'font-size: {SIZES["subtitle"]}; '
                 f'text-align: center; '
@@ -70,35 +71,38 @@ def create_hero_section():
                 f'margin-bottom: 2rem'
             )
             
-            # Buttons - much more visible!
+            # Buttons
             with ui.row().classes('gap-6 mt-4'):
                 
-                # Primary button - solid blue
-                ui.button('STARTA SPEL', on_click=start_game).style(
-                    f'background: {COLORS["accent_primary"]}; '
-                    f'color: white; '
-                    f'font-weight: bold; '
-                    f'font-size: 20px; '
-                    f'padding: 1.2rem 3.5rem; '
-                    f'border-radius: 8px; '
-                    f'letter-spacing: 2px; '
-                    f'box-shadow: {EFFECTS["card_shadow"]}; '
-                    f'transition: all 0.3s ease; '
-                    f'border: none'
-                )
-                
-                # Secondary button - light blue, very visible!
-                ui.button('LÄR MER', on_click=learn_more).props('flat').style(
-                    f'color: {COLORS["accent_bright"]}; '
-                    f'border: 3px solid {COLORS["accent_bright"]}; '
-                    f'font-weight: bold; '
-                    f'font-size: 20px; '
-                    f'padding: 1.2rem 3.5rem; '
-                    f'border-radius: 8px; '
-                    f'letter-spacing: 2px; '
-                    f'transition: all 0.3s ease; '
-                    f'background: transparent !important'
-                )
+                # Primary button - STARTA SPEL
+                ui.button('STARTA SPEL', on_click=start_game).props('flat').style(
+                    f'background: {COLORS["button_blue"]} !important; '
+                    'color: white !important; '
+                    'font-weight: bold; '
+                    'font-size: 20px; '
+                    'padding: 1.2rem 3.5rem; '
+                    'border-radius: 8px; '
+                    'letter-spacing: 2px; '
+                    'box-shadow: 0 10px 40px rgba(29, 78, 216, 0.3); '
+                    'transition: all 0.3s ease; '
+                    'border: none; '
+                    'min-width: 250px'
+                ).classes('hover:scale-110')
+
+                # Secondary button - LÄS MER
+                ui.button('LÄS MER', on_click=learn_more).props('flat').style(
+                    f'background: {COLORS["button_blue"]} !important; '
+                    'color: white !important; '
+                    'font-weight: bold; '
+                    'font-size: 20px; '
+                    'padding: 1.2rem 3.5rem; '
+                    'border-radius: 8px; '
+                    'letter-spacing: 2px; '
+                    'box-shadow: 0 10px 40px rgba(29, 78, 216, 0.3); '
+                    'transition: all 0.3s ease; '
+                    'border: none; '
+                    'min-width: 250px'
+                ).classes('hover:scale-110')
 
 
 # === FUNCTIONS FOR BUTTONS ===
@@ -112,5 +116,4 @@ def start_game():
 
 def learn_more():
     """Shows more information"""
-    # TODO: Scroll to features section
-    ui.notify('Scrolla ner för mer info!')
+    ui.run_javascript('document.getElementById("features").scrollIntoView({ behavior: "smooth" })')
