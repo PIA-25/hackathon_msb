@@ -17,7 +17,7 @@ ui.dark_mode().enable()
 app.add_static_files('/assets', 'assets'
 )
 
-# Fix: Täck hela skärmen med bakgrundsfärg
+# Covers whole screen with background color
 ui.add_head_html('''
     <style>
         body, html {
@@ -36,11 +36,12 @@ ui.add_head_html('''
 # === BUILDS PAGE ===
 # Every function creates its own section on the page
 
-create_header()          # Fixed at top
+create_header()          
 create_hero_section()
 create_features_section()
 create_stats_section()
-create_footer()         # Fixed at bottom
+create_footer()         
 
-# Run the app
-ui.run(title='Produktnamn', port=8080)
+# Runs the app
+if __name__ == '__main__':
+    ui.run(title='Produktnamn', port=8080)

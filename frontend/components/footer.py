@@ -16,7 +16,7 @@ def create_footer():
     with ui.footer().classes('items-center justify-center').style(
         f'background: {COLORS["background_footer"]}; '
         f'border-top: 2px solid {COLORS["border_blue"]}; '
-        f'padding: 1.5rem 2rem; '
+        f'padding: 1rem 2rem; '
         f'position: fixed; '
         f'bottom: 0; '
         f'left: 0; '

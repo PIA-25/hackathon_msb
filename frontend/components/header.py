@@ -13,7 +13,7 @@ def create_header():
     with ui.header().classes('items-center justify-between').style(
         f'background: {COLORS["background_footer"]}; '
         f'border-bottom: 1px solid {COLORS["border_blue"]}; '
-        f'padding: 1rem 2rem; '
+        f'padding: 0.002rem 2rem; '
         f'position: fixed; '
         f'top: 0; '
         f'left: 0; '
@@ -23,7 +23,8 @@ def create_header():
         
         # Logo/Brand (left side)
         with ui.row().classes('items-center gap-2'):
-            ui.icon('psychology', size='2rem').style(f'color: {COLORS["accent_bright"]}')
+            ui.image('/assets/logo_icon.png').style('width: 60px; height: 60px') 
+            
             ui.label('PRODUKTNAMN').style(
                 f'color: {COLORS["text_white"]}; '
                 f'font-size: 20px; '
@@ -32,15 +33,14 @@ def create_header():
             )
         
         # User icon with menu (right side)
-        with ui.button(icon='account_circle', on_click=lambda: menu.open()).props('flat round').style(
-            f'color: {COLORS["text_blue"]}'
+        with ui.button(icon='account_circle').props('flat round').style(
+            f'color: {COLORS["text_blue"]}; '
+            f'font-size: 1.2rem'
         ):
-            pass
-        
-        # Dropdown menu
-        with ui.menu() as menu:
-            ui.menu_item('Logga in', on_click=lambda: ui.notify('Logga in...'))
-            ui.menu_item('Registrera', on_click=lambda: ui.notify('Registrera...'))
-            ui.separator()
-            ui.menu_item('Inställningar', on_click=lambda: ui.notify('Inställningar...'))
-            ui.menu_item('Hjälp', on_click=lambda: ui.notify('Hjälp...'))
+            # Dropdown menu
+            with ui.menu().props('anchor="bottom right" self="top right"') as menu:
+                ui.menu_item('Logga in', on_click=lambda: ui.notify('Logga in...'))
+                ui.menu_item('Registrera', on_click=lambda: ui.notify('Registrera...'))
+                ui.separator()
+                ui.menu_item('Inställningar', on_click=lambda: ui.notify('Inställningar...'))
+                ui.menu_item('Hjälp', on_click=lambda: ui.notify('Hjälp...'))

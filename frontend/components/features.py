@@ -10,11 +10,11 @@ from config.theme import COLORS, SIZES, EFFECTS
 def create_features_section():
     # Creates feature-section with 3 steps
     
-    with ui.column().classes('w-full items-center').style(
+    with ui.column().classes('w-full items-center').props('id="features"').style(
         f'padding: 6rem 2rem; background: {COLORS["background_secondary"]}'
     ):
         
-        # Section title with better styling
+        # Section title
         ui.label('HUR DET FUNGERAR').style(
             f'color: {COLORS["text_white"]}; '
             f'font-size: {SIZES["section_title"]}; '
@@ -69,7 +69,7 @@ def create_feature_card(icon: str, title: str, description: str):
     ).classes('hover:scale-105'):
         
         with ui.column().classes('items-center text-center'):
-            # Icon with blue glow
+            # Icon
             ui.icon(icon, size=SIZES['icon_medium']).style(
                 f'color: {COLORS["accent_bright"]}; '
                 f'margin-bottom: 1.5rem; '
