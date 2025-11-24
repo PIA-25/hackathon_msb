@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, Boolean, func
 from sqlalchemy.orm import relationship
-from database import Base
+from .database import Base
 """Här definierar vi de olika tabellerna i databasen"""
 
 
