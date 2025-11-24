@@ -43,5 +43,4 @@ create_stats_section()
 create_footer()         
 
 # Runs the app
-if __name__ == '__main__':
-    ui.run(title='Produktnamn', port=8080)
+ui.run(title='Produktnamn', port=8080)
