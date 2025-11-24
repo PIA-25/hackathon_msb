@@ -4,6 +4,7 @@ Landing Page
 MAIN FILE - imports and combines all components
 """
 
+from pathlib import Path
 from nicegui import ui, app
 from components.header import create_header
 from components.hero import create_hero_section
@@ -14,8 +15,10 @@ from components.footer import create_footer
 # Enable dark mode
 ui.dark_mode().enable()
 
-app.add_static_files('/assets', 'assets'
-)
+# Get the directory where this script is located
+dir = Path(__file__).parent
+assets_path = dir / 'assets'
+app.add_static_files('/assets', str(assets_path))
 
 # Covers whole screen with background color
 ui.add_head_html('''
@@ -43,5 +46,5 @@ create_stats_section()
 create_footer()         
 
 # Runs the app
-if __name__ == '__main__':
+if __name__ in {"__main__", "__mp_main__"}:
     ui.run(title='Produktnamn', port=8080)
