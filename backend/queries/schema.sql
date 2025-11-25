@@ -13,21 +13,25 @@ CREATE TABLE levels (
     title         VARCHAR(100)
 );
 
-
 CREATE TABLE scenarios (
     scenario_id    SERIAL PRIMARY KEY,
     level_id       INT NOT NULL REFERENCES levels(level_id),
     scenario_text  TEXT NOT NULL
 );
 
-CREATE TABLE choice_options (
+CREATE TABLE good_choices (
     choice_id      SERIAL PRIMARY KEY,
     scenario_id    INT NOT NULL REFERENCES scenarios(scenario_id),
     option_text    TEXT NOT NULL,      -- valet spelaren ser
     outcome_text   TEXT NOT NULL       -- feedback efter valet
 );
 
-
+CREATE TABLE bad_choices (
+    choice_id      SERIAL PRIMARY KEY,
+    scenario_id    INT NOT NULL REFERENCES scenarios(scenario_id),
+    option_text    TEXT NOT NULL,      -- valet spelaren ser
+    outcome_text   TEXT NOT NULL       -- feedback efter valet
+);
 
 CREATE TABLE user_choices (
     user_choice_id  SERIAL PRIMARY KEY,
