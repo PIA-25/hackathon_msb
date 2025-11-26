@@ -35,6 +35,7 @@ choice_attributes = Table(
 """Tabell Users"""
 class User(Base):
     __tablename__ = "users"
+    __allow_unmapped__ = True
     
     user_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     firstname = Column(String(50), index=True)
@@ -50,7 +51,8 @@ class User(Base):
 """Tabell Levels"""
 class Level(Base):
     __tablename__ = "levels"
-    
+    __allow_unmapped__ = True # sebbe ändrade här
+
     level_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     level_number = Column(Integer, nullable=False)
     title = Column(String(100), nullable=True)
@@ -62,6 +64,7 @@ class Level(Base):
 """Tabell Scenarios"""
 class Scenario(Base):
     __tablename__ = "scenarios"
+    __allow_unmapped__ = True# sebbe ändrade här
     
     scenario_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     level_id = Column(Integer, ForeignKey("levels.level_id"), nullable=False)
@@ -75,6 +78,7 @@ class Scenario(Base):
 """Tabell Choice Options"""
 class ChoiceOption(Base):
     __tablename__ = "choice_options"
+    __allow_unmapped__ = True # sebbe ändrade här
     
     choice_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     scenario_id = Column(Integer, ForeignKey("scenarios.scenario_id"), nullable=False)
@@ -90,6 +94,7 @@ class ChoiceOption(Base):
 """Tabell User Choices"""
 class UserChoice(Base):
     __tablename__ = "user_choices"
+    __allow_unmapped__ = True # sebbe ändrade här
     
     user_choice_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
@@ -107,6 +112,7 @@ class UserChoice(Base):
 """Tabell Attributes"""
 class Attribute(Base):
     __tablename__ = "attributes"
+    __allow_unmapped__ = True # sebbe ändrade här
     
     attribute_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(50), nullable=False, unique=True)  # t.ex. "loyal", "taktisk", "ödmjuk"
