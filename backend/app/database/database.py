@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy.exc import OperationalError  # <--- NY RAD
+from sqlalchemy.exc import OperationalError
 
 #fixa .env fil för att inte lägga in lösenord och användarnamn i koden så vi ej pushar det till github
 #fixa även logiken med database_url
