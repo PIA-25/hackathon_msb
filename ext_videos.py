@@ -15,9 +15,12 @@ VIDEO_NAME = "video0.mp4"
 VIDEO_DIR = "videos/"
 VIDEO_PATH = f"{VIDEO_DIR}{VIDEO_NAME}"
 
-print(f"Uploading file: {VIDEO_PATH}...")
-uploaded_file = client.files.upload(file=VIDEO_PATH)
-print(f"File uploaded successfully. URI: {uploaded_file.uri}")
+#print(f"Uploading file: {VIDEO_PATH}...")
+#uploaded_file = client.files.upload(file=VIDEO_PATH)
+#(f"File uploaded successfully. URI: {uploaded_file.uri}")
+video = types.Video.from_file(location=VIDEO_PATH)
+
+file = client.files.get(name="files/od3vuqvf6gs9")
 
 #operation: GenerateVideosOperation = None
 
@@ -30,7 +33,10 @@ Det här ska vara en len övergång från den första videon.
 operation = client.models.generate_videos(
     model="veo-3.1-generate-preview",
     #video=operation.response.generated_videos[0].video, # This must be a video from a previous generation
-    video=uploaded_file.video_metadata,
+    #video=uploaded_file.video_metadata,
+    video=types.Video(
+        uri=file.uri
+    ),
     prompt=prompt,
     config=types.GenerateVideosConfig(
         number_of_videos=1,
@@ -53,5 +59,7 @@ if operation.result and operation.result.generated_videos:
     print("Extended video saved!")
 
     # Optional
-    client.files.delete(name=uploaded_file.name)
-    print(f"Deleted the uploaded file: {uploaded_file.name}")
+    #client.files.delete(name=uploaded_file.name)
+    #print(f"Deleted the uploaded file: {uploaded_file.name}")
+
+client.close()
