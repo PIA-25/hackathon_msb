@@ -1,18 +1,36 @@
 import time
 from google import genai
 from google.genai import types
-from google.genai.types import GenerateVideosOperation
+from dotenv import load_dotenv
 
-client = genai.Client()
+load_dotenv()
+
+import os
 
 
-operation: GenerateVideosOperation = None
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-prompt = "Track the butterfly into the garden as it lands on an orange origami flower. A fluffy white puppy runs up and gently pats the flower."
+
+VIDEO_NAME = "video0.mp4"
+VIDEO_DIR = "videos/"
+VIDEO_PATH = f"{VIDEO_DIR}{VIDEO_NAME}"
+
+print(f"Uploading file: {VIDEO_PATH}...")
+uploaded_file = client.files.upload(file=VIDEO_PATH)
+print(f"File uploaded successfully. URI: {uploaded_file.uri}")
+
+#operation: GenerateVideosOperation = None
+
+prompt = """
+Följ den unge mannen ut ur klassrumsdörren. Den unge mannen och resten av klassen ska sedan
+föras till ett skyddsrum. Rektorn ska säga att dom måste stanna kvar där till vidare.
+Det här ska vara en len övergång från den första videon.
+"""
 
 operation = client.models.generate_videos(
     model="veo-3.1-generate-preview",
-    video=operation.response.generated_videos[0].video, # This must be a video from a previous generation
+    #video=operation.response.generated_videos[0].video, # This must be a video from a previous generation
+    video=uploaded_file.video_metadata,
     prompt=prompt,
     config=types.GenerateVideosConfig(
         number_of_videos=1,
@@ -26,8 +44,14 @@ while not operation.done:
     time.sleep(10)
     operation = client.operations.get(operation)
 
-# Download the video.
-video = operation.response.generated_videos[0]
-client.files.download(file=video.video)
-video.video.save("veo3.1_extension.mp4")
-print("Generated video saved to veo3.1_extension.mp4")
+if operation.result and operation.result.generated_videos:
+    extended_video = operation.result.generated_videos[0]
+
+    output_file_name = f"{VIDEO_DIR}extended_{VIDEO_NAME}"
+    client.files.download(file=extended_video.video)
+    extended_video.video.save(path=output_file_name)
+    print("Extended video saved!")
+
+    # Optional
+    client.files.delete(name=uploaded_file.name)
+    print(f"Deleted the uploaded file: {uploaded_file.name}")
