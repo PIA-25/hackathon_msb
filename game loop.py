@@ -1,10 +1,13 @@
+import json
 
+def load_scenarios():
+    with open("mock_data/mock.json", "r", encoding="utf-8") as f:
+        return json.load(f)["scenarios"]
 
-from mock_data.mock import scenarios
 class GameLoop:
     def __init__(self):
-        # All scenarios live here
-        self.scenarios = scenarios
+        # All scenarios live here (now loaded from JSON)
+        self.scenarios = load_scenarios()
 
     def sinario(self, data):
         print()
@@ -46,6 +49,7 @@ class GameLoop:
             # go to next scenario either way
             index += 1
         self.final()
+
 # ---- start the game ----
 if __name__ == "__main__":
     game = GameLoop()

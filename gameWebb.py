@@ -1,12 +1,20 @@
-from mock_data.mock import scenarios
+import json
 from nicegui import ui
 import textwrap
 
 # -------------------------------------------------------
-# TEXT WRAPPING FUNCTION (ADDED)
+# LOAD JSON SCENARIOS
+# -------------------------------------------------------
+def load_scenarios():
+    with open('mock_data/mock.json', 'r', encoding='utf-8') as f:
+        return json.load(f)["scenarios"]
+
+scenarios = load_scenarios()
+
+# -------------------------------------------------------
+# TEXT WRAPPING FUNCTION
 # -------------------------------------------------------
 def wrap_text(text: str, width: int = 40) -> str:
-    """Remove leading newlines and wrap text cleanly."""
     clean = text.lstrip()
     return "\n".join(textwrap.wrap(clean, width=width))
 
@@ -52,7 +60,6 @@ game = GameUI()
 @ui.page('/')
 def index():
 
-    # Load JetBrains Mono font
     ui.add_head_html("""
     <link href="https://cdnjs.cloudflare.com/ajax/libs/JetBrainsMono/2.304.0/jetbrains-mono.min.css" rel="stylesheet">
     <style>
@@ -63,14 +70,12 @@ def index():
     def current_video_path() -> str:
         return game.video_path
 
-    # Background video
     with ui.element('div').classes('w-full h-screen overflow-hidden'):
 
         video = ui.video(current_video_path()) \
             .classes('absolute inset-0 w-full h-full object-cover') \
             .on('ended', lambda _: update_ui())
 
-        # Overlay UI
         with ui.column().classes(
             'absolute inset-0 items-center justify-center gap-6 text-white '
             'bg-black/30 backdrop-blur-md p-10 rounded-3xl'
@@ -80,47 +85,27 @@ def index():
             text_label = ui.label().classes('text-lg max-w-3xl text-center opacity-80 font-jetbrains')
             feedback_label = ui.label().classes('text-md text-yellow-200 font-jetbrains')
 
-            # -------------------------------------------------------
-            # CHOICE A (unchanged layout)
-            # -------------------------------------------------------
+            # ---------- CHOICE A ----------
             with ui.row().classes(
                 'items-center gap-6 bg-black/40 backdrop-blur-md rounded-2xl '
                 'px-6 py-5 w-full max-w-3xl cursor-pointer hover:bg-black/60 transition-all'
             ) as block_a:
 
-                ui.label('A').classes(
-                    'text-white text-2xl font-bold font-jetbrains'
-                )
-
-                ui.element('div').classes(
-                    'h-10 w-px bg-white/40'
-                )
-
-                text_a = ui.label().classes(
-                    'text-white text-lg font-jetbrains leading-snug whitespace-pre-line'
-                )
+                ui.label('A').classes('text-white text-2xl font-bold font-jetbrains')
+                ui.element('div').classes('h-10 w-px bg-white/40')
+                text_a = ui.label().classes('text-white text-lg font-jetbrains leading-snug whitespace-pre-line')
 
             block_a.on('click', lambda e: on_click('a'))
 
-            # -------------------------------------------------------
-            # CHOICE B (unchanged layout)
-            # -------------------------------------------------------
+            # ---------- CHOICE B ----------
             with ui.row().classes(
                 'items-center gap-6 bg-black/40 backdrop-blur-md rounded-2xl '
                 'px-6 py-5 w-full max-w-3xl cursor-pointer hover:bg-black/60 transition-all'
             ) as block_b:
 
-                ui.label('B').classes(
-                    'text-white text-2xl font-bold font-jetbrains'
-                )
-
-                ui.element('div').classes(
-                    'h-10 w-px bg-white/40'
-                )
-
-                text_b = ui.label().classes(
-                    'text-white text-lg font-jetbrains leading-snug whitespace-pre-line'
-                )
+                ui.label('B').classes('text-white text-2xl font-bold font-jetbrains')
+                ui.element('div').classes('h-10 w-px bg-white/40')
+                text_b = ui.label().classes('text-white text-lg font-jetbrains leading-snug whitespace-pre-line')
 
             block_b.on('click', lambda e: on_click('b'))
 
@@ -129,7 +114,7 @@ def index():
         overlay.visible = False
 
     # -------------------------------------------------------
-    # UPDATE UI WHEN VIDEO ENDS OR A/B CLICKED
+    # UPDATE UI
     # -------------------------------------------------------
     def update_ui():
         if game.finished:
@@ -147,26 +132,17 @@ def index():
         text_label.text = current['text']
         feedback_label.text = game.feedback
 
-        # -------------------------------------------------------
-        # UPDATED: wrap and clean A/B text
-        # -------------------------------------------------------
         text_a.text = wrap_text(current['a'])
         text_b.text = wrap_text(current['b'])
 
         end_label.text = ''
         overlay.visible = True
 
-    # -------------------------------------------------------
-    # PLAY NEXT VIDEO
-    # -------------------------------------------------------
     def new_scenario():
         overlay.visible = False
         video.set_source(current_video_path())
         video.run_method('play')
 
-    # -------------------------------------------------------
-    # HANDLE USER CHOICE
-    # -------------------------------------------------------
     def on_click(choice: str):
         game.handle_choice(choice)
         update_ui()
@@ -178,4 +154,3 @@ def index():
 # -------------------------------------------------------
 if __name__ in ('__main__', '__mp_main__'):
     ui.run(title='Crisis Game')
-
