@@ -60,8 +60,30 @@ class RegistrationModal:
             # Namn
             self._create_input_field('name', 'Namn', 'Ange ditt namn', 'person')
             
-            # Ålder
-            self._create_input_field('age', 'Ålder', 'Ange din ålder', 'calendar_today', input_type='number')
+            # Personnummer
+            self._create_input_field('personal_number', 'Personnummer', 'ÅÅÅÅMMDD-XXXX', 'badge')
+            
+            # Ålder - Dropdown
+            ui.label('Ålder').style(
+                f'color: {COLORS["text_white"]}; '
+                f'font-size: {SIZES["body"]}; '
+                f'font-weight: bold; '
+                f'margin-top: 1rem'
+            )
+            
+            # Skapa en lista med åldrar från 18 till 100
+            age_options = [str(i) for i in range(18, 101)]
+            
+            self.age = ui.select(
+                age_options,
+                value='25'
+            ).style(
+                f'background: {COLORS["background_secondary"]}; '
+                f'color: {COLORS["text_white"]}; '
+                f'border: 1px solid {COLORS["border_blue"]}; '
+                f'border-radius: 8px; '
+                f'padding: 0.5rem'
+            ).props('outlined')
             
             # Yrke
             ui.label('Yrke/Studieinriktning').style(
@@ -81,8 +103,6 @@ class RegistrationModal:
                 f'border-radius: 8px; '
                 f'padding: 0.5rem'
             ).props('outlined')
-            
-        
             
             # Ledarstil - Dropdown
             ui.label('Ledarstil').style(
@@ -218,6 +238,7 @@ class RegistrationModal:
         # Collect data
         self.user_data = {
             'name': self.name.value,
+            'personal_number': self.personal_number.value,
             'age': self.age.value,
             'occupation': self.occupation.value,
             'leadership_style': self.leadership_style.value,
@@ -227,7 +248,7 @@ class RegistrationModal:
         }
             
         # Basic validation
-        if not self.user_data['name'] or not self.user_data['age']:
+        if not self.user_data['name'] or not self.user_data['personal_number']:
             ui.notify('Vänligen fyll i alla obligatoriska fält', type='negative')
             return
             
