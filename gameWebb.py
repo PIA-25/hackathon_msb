@@ -30,34 +30,49 @@ class GameUI:
             self.finished = True
 
 game = GameUI()
-def current_video_path() -> str:
-    return game.video_path
+show_start_overlay = True  # At the top, after game = GameUI()
 
 @ui.page('/')
 def index() -> None:
+    global show_start_overlay
+
     with ui.element('div').classes('w-full h-screen overflow-hidden'):
-        # background video
+        # --- Start overlay ---
+        with ui.column().classes(
+            'absolute inset-0 items-center justify-center gap-6 text-white bg-black/70 z-10'
+        ) as start_overlay:
+            ui.label('Välkommen till Crisis Game!').classes('text-4xl font-bold')
+            ui.button('Starta spelet', on_click=lambda: start_game()).classes(
+                'bg-green-600 text-white text-xl px-8 py-4 rounded-full mt-4'
+            )
+        start_overlay.visible = show_start_overlay
+
+        # --- Main game overlay ---
         video = ui.video(
             current_video_path(),
         ).classes(
             'absolute inset-0 w-full h-full object-cover pointer-events-none'
         ).on('ended', lambda _: update_ui())
-        ui.button('Start', on_click=lambda: video.run_method('play'))
-        # overlay content
+
         with ui.column().classes(
-            'absolute inset-0 items-center justify-center gap-4 text-white '
-            'bg-black/40 p-6'
+            'absolute inset-0 items-center justify-center gap-4 text-white bg-black/40 p-6'
         ) as overlay:
             title_label = ui.label().classes('text-3xl font-bold')
             text_label = ui.label().classes('text-lg max-w-3xl text-center')
             feedback_label = ui.label().classes('text-md text-yellow-200')
-
             with ui.row().classes('gap-4'):
                 btn_a = ui.button()
                 btn_b = ui.button()
-
             end_label = ui.label().classes('text-3xl font-bold mt-4')
         overlay.visible = False
+
+    def start_game():
+        global show_start_overlay
+        show_start_overlay = False
+        start_overlay.visible = False
+        overlay.visible = True
+        update_ui()
+
     def update_ui():
         if game.finished:
             title_label.text = 'The End'
