@@ -2,12 +2,14 @@ from google import genai
 from google.genai import types
 
 import os
+from datetime import datetime
 
 
-def load_in_local_video(client, video_path: str) -> types.Video:
+def load_in_local_video(client: genai.Client,
+                        video_path: str) -> types.Video:
+
     uploaded_file = client.files.upload(
-        file=video_path,
-        display_name=os.path.basename(video_path)
+        file=video_path
     )
 
     video = types.Video(
@@ -17,7 +19,7 @@ def load_in_local_video(client, video_path: str) -> types.Video:
     return video
 
 
-def load_in_video_from_uri(video_uri) -> types.Video:
+def load_in_video_from_uri(video_uri: str) -> types.Video:
     video = types.Video(
         uri=video_uri
     )
@@ -25,7 +27,26 @@ def load_in_video_from_uri(video_uri) -> types.Video:
     return video
 
 
-def create_ai_prompt(user_info: dict):
+def save_video(client: genai.Client,
+               video: types.Video,
+               save_dir: str,
+               local_download: bool = False) -> None:
+
+    client.files.download(file=video)
+
+    if local_download:
+        # TODO: Decide to include "/" or not, between folder and file
+        output_file_name = f"{save_dir}video_{datetime.today()}.mp4"
+        video.save(path=output_file_name)
+
+    print("Extended video saved!")
+
+    # Optional
+    # client.files.delete(name=uploaded_file.name)
+    # print(f"Deleted the uploaded file: {uploaded_file.name}")
+
+
+def create_ai_prompt(user_info: dict) -> str:
     strategy = user_info["strategy"]
     age = user_info["age"]
     gender = user_info["gender"]
