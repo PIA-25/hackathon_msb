@@ -13,24 +13,16 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 prompt = """
 A calm, realistic crisis scenario inside a Swedish university building (Linköping University aesthetic). The style is grounded, documentary‑like, with natural lighting and handheld camera movement.
-
 Scene opens with a classroom where students have just received emergency alerts on their phones. Without panic, the group moves together through a corridor toward an inner room with no windows.
-
 Inside the room, the atmosphere is serious but orderly.
-
 A teacher calmly explains safety routines, pointing to emergency signs and giving structured instructions.
-
 A student turns on a small radio on their phone, playing a Swedish emergency broadcast quietly in the background.
-
 Several students sit down, texting or calling family members to tell them they are safe.
-
 The camera captures subtle details: backpacks on the floor, dimmed lights, steady breathing, reassuring nods between people.
-
 Tone: calm, responsible, collective effort.
 Mood: controlled, safe, coordinated.
 Color palette: neutral, slightly desaturated, indoor lighting.
 Camera style: slow movements, medium shots, handheld but steady, realistic facial expressions.
-
 End with a stable, reassuring shot of the group settled inside the secure room.
 No panic, no dramatic sound — focus on trust, structure, and emotional steadiness.
 """
