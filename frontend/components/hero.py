@@ -106,12 +106,12 @@ def create_hero_section():
 
 
 # === FUNCTIONS FOR BUTTONS ===
-# TODO: Connect to real pages/functions later
 
 def start_game():
-    # Navigates to the game page
-    # TODO: ui.open('/game') when we have game page
-    ui.notify('Spelet startas snart!', type='positive')
+    """Opens registration modal"""
+    # Import here to avoid circular imports
+    from components.registration_modal import registration_modal
+    registration_modal.show()
 
 
 def learn_more():
