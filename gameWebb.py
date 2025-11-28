@@ -40,9 +40,8 @@ def index() -> None:
         video = ui.video(
             current_video_path(),
         ).classes(
-            'absolute inset-0 w-full h-full object-cover pointer-events-none'
+            'absolute inset-0 w-full h-full object-cover'
         ).on('ended', lambda _: update_ui())
-        ui.button('Start', on_click=lambda: video.run_method('play'))
         # overlay content
         with ui.column().classes(
             'absolute inset-0 items-center justify-center gap-4 text-white '
