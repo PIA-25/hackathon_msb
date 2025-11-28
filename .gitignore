@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 venv/
 __pycache__/
 *.pyc
@@ -5,3 +6,83 @@ __pycache__/
 *.pyd
 .env
 .DS_Store
+||||||| 8a5998e
+=======
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm / JetBrains IDE
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# macOS / Windows OS stuff
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and local data
+*.log
+logs/
+*.sqlite3
+
+# Media and large binary files (videos, etc.)
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Local mock or temp data
+mock_data/
+
+# Backup / temp files
+*.swp
+*.swo
+*~
+~$*
+
+# Git
+.gitignore
+
+.idea
+>>>>>>> 5ba2ecd3a7c66578dcb8607a6982f78092e363a1
