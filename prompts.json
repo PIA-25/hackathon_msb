@@ -1,0 +1,19 @@
+[
+  {
+    "scenario_1": {
+      "base_prompt": "A low-angle, shaky, handheld camera shot of a dark, smoke-filled, destroyed city street at dawn. Cinematic, high contrast, photo-realistic.",
+      "flee": "The scene focuses on a {age}-year-old {gender} desperately running towards a crowded checkpoint. They carry a small backpack and look over their shoulder in panic. The shot should emphasize the chaos and urgency of evacuation. Show other civilians climbing into a military-style vehicle.",
+      "stay": "The scene follows a determined {age}-year-old {gender} wearing a tactical vest. They are crouching behind rubble, aiming a rifle. The shot should focus on their intense concentration and the defensive posture, with dust and debris swirling around. A comrade waves them forward.",
+      "theme_context": "The audio should feature distant thunderous explosions, followed by immediate silence. The clip must maintain a consistent camera shake to convey realism."
+    },
+    "scenario_1_extended": {
+
+    },
+    "scenario_2": {
+
+    },
+    "scenario_2_extended": {
+
+    }
+  }
+]

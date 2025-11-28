@@ -6,7 +6,7 @@ import os
 import time
 from datetime import datetime
 
-from utils import save_video
+from utils import create_ai_prompt
 
 
 load_dotenv()
@@ -33,8 +33,6 @@ def generate_first_vid(client: genai.Client,
     generated_video: types.Video = operation.response.generated_videos[0].video
     video_uri = generated_video.uri
 
-    print(video_uri)
-
     # Download to Google
     video_bytes = client.files.download(file=generated_video)
 
@@ -43,10 +41,10 @@ def generate_first_vid(client: genai.Client,
         generated_video.save(f"base_video_{datetime.today()}.mp4")
 
     video_info = {
+        "video": generated_video,
         "uri": video_uri,
-        "locally_downloaded": local_download,
         "video_bytes": video_bytes,
-        "video": generated_video
+        "locally_downloaded": local_download
     }
 
     return video_info
@@ -75,8 +73,6 @@ def generate_extended_video(client: genai.Client,
     generated_extended_video: types.Video = operation.response.generated_videos[0].video
     video_uri = generated_extended_video.uri
 
-    print(video_uri)
-
     # Download to Google
     video_bytes = client.files.download(file=generated_extended_video)
 
@@ -85,25 +81,46 @@ def generate_extended_video(client: genai.Client,
         generated_extended_video.save(f"extended_video_{datetime.today()}.mp4")
 
     video_info = {
+        "video": generated_extended_video,
         "uri": video_uri,
-        "locally_downloaded": local_download,
         "video_bytes": video_bytes,
-        "video": generated_extended_video
+        "locally_downloaded": local_download,
     }
 
     return video_info
 
 
 if __name__ == "__main__":
+
+    user_info = {
+        "strategy": "flee",
+        "age": 26,
+        "gender": "male"
+    }
+
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-    prompt = """
+    base_prompt = create_ai_prompt(
+        user_info=user_info,
+        scenario_number=1
+    )
 
-    """
+    extended_prompt = create_ai_prompt(
+        user_info=user_info,
+        scenario_number=1,
+        extended=True
+    )
 
-    video_info = generate_first_vid(client, prompt)
-
-    base_vid_info = generate_first_vid(client, prompt, True)
-    ext_vid_info = generate_extended_video(client, prompt, base_vid_info["video"], True)
+    base_vid_info = generate_first_vid(
+        client,
+        base_prompt,
+        True
+    )
+    ext_vid_info = generate_extended_video(
+        client,
+        extended_prompt,
+        base_vid_info["video"],
+        True
+    )
 
     client.close()

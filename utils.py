@@ -3,6 +3,7 @@ from google.genai import types
 
 import os
 from datetime import datetime
+import json
 
 
 def load_in_local_video(client: genai.Client,
@@ -46,34 +47,46 @@ def save_video(client: genai.Client,
     # print(f"Deleted the uploaded file: {uploaded_file.name}")
 
 
-def create_ai_prompt(user_info: dict) -> str:
+def create_ai_prompt(user_info: dict,
+                     scenario_number: int,
+                     extended: bool = False) -> str:
+
     strategy = user_info["strategy"]
     age = user_info["age"]
     gender = user_info["gender"]
 
+    scenario_key = f"scenario_{scenario_number}"
+    scenario_key += "_extended" if extended else ""
+
+    with open("prompts.json", "r") as file:
+        scenario = json.load(file)[scenario_key]
+
     # Base Cinematic Style for consistency
-    BASE_STYLE = "A low-angle, shaky, handheld camera shot of a dark, smoke-filled, destroyed city street at dawn. Cinematic, high contrast, photo-realistic."
+    BASE_STYLE = (
+        scenario["base_prompt"]
+        .replace("{age}", age)
+        .replace("{gender}", gender)
+    )
 
     # Context based on User's Choice
     if strategy == 'flee':
         ACTION_SCENE = (
-            f"The scene focuses on a {age}-year-old {gender} desperately running towards a crowded checkpoint. "
-            f"They carry a small backpack and look over their shoulder in panic. "
-            f"The shot should emphasize the chaos and urgency of evacuation. "
-            f"Show other civilians climbing into a military-style vehicle."
+            scenario["flee"]
+            .replace("{age}", age)
+            .replace("{gender}", gender)
         )
-    else:  # fight
+    else:  # stay
         ACTION_SCENE = (
-            f"The scene follows a determined {age}-year-old {gender} wearing a tactical vest. "
-            f"They are crouching behind rubble, aiming a rifle. "
-            f"The shot should focus on their intense concentration and the defensive posture, "
-            f"with dust and debris swirling around. A comrade waves them forward."
+            scenario["stay"]
+            .replace("{age}", age)
+            .replace("{gender}", gender)
         )
 
     # Narrative/Thematic Context
     THEME_CONTEXT = (
-        "The audio should feature distant thunderous explosions, followed by immediate silence. "
-        "The clip must maintain a consistent camera shake to convey realism."
+        scenario["theme_context"]
+        .replace("{age}", age)
+        .replace("{gender}", gender)
     )
 
     return f"{BASE_STYLE} {ACTION_SCENE} {THEME_CONTEXT}"
