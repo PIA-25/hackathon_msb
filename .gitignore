@@ -73,7 +73,6 @@ logs/
 *.mkv
 
 # Local mock or temp data
-mock_data/
 
 # Backup / temp files
 *.swp
