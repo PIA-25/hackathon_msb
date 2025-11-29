@@ -1,19 +1,20 @@
-[
-  {
-    "scenario_1": {
-      "base_prompt": "A low-angle, shaky, handheld camera shot of a dark, smoke-filled, destroyed city street at dawn. Cinematic, high contrast, photo-realistic.",
-      "flee": "The scene focuses on a {age}-year-old {gender} desperately running towards a crowded checkpoint. They carry a small backpack and look over their shoulder in panic. The shot should emphasize the chaos and urgency of evacuation. Show other civilians climbing into a military-style vehicle.",
-      "stay": "The scene follows a determined {age}-year-old {gender} wearing a tactical vest. They are crouching behind rubble, aiming a rifle. The shot should focus on their intense concentration and the defensive posture, with dust and debris swirling around. A comrade waves them forward.",
-      "theme_context": "The audio should feature distant thunderous explosions, followed by immediate silence. The clip must maintain a consistent camera shake to convey realism."
-    },
-    "scenario_1_extended": {
+{
+  "scenario_1": {
+    "base_prompt": "A low-angle, shaky, handheld camera shot of a dark, smoke-filled, destroyed city street at dawn. Cinematic, high contrast, photo-realistic.",
+    "flee": "The scene focuses on a {age}-year-old {gender} desperately running towards a crowded checkpoint. They carry a small backpack and look over their shoulder in panic. The shot should emphasize the chaos and urgency of evacuation. Show other civilians climbing into a military-style vehicle.",
+    "stay": "The scene follows a determined {age}-year-old {gender} wearing a tactical vest. They are crouching behind rubble, aiming a rifle. The shot should focus on their intense concentration and the defensive posture, with dust and debris swirling around. A comrade waves them forward.",
+    "theme_context": "The audio should feature distant thunderous explosions, followed by immediate silence. The clip must maintain a consistent camera shake to convey realism."
+  },
+  "scenario_1_extended": {
+    "base_prompt": "A continuous handheld tracking shot transitioning deeper into the devastated city. Early sunlight attempts to penetrate dense smoke, creating dramatic silhouettes. Photo-realistic, cinematic motion blur.",
+    "flee": "The {age}-year-old {gender} finally reaches the checkpoint as soldiers shout orders. The scene shows the panic of people pushing to board vehicles. The camera sweeps past the protagonist as they help someone stand, hesitating before stepping into the transport. Emphasize emotional conflict — leaving or staying behind.",
+    "stay": "The {age}-year-old {gender} moves from cover to cover with a small squad. The camera remains close, capturing determined breaths and glances exchanged between teammates. Sparks and falling debris hint at ongoing threats off-screen, maintaining tension without explicit violence.",
+    "theme_context": "Sound design includes closer aircraft rumble overhead and radio chatter cutting in and out. The camera shake should lessen slightly to reflect a more controlled movement while still showing urgency."
+  },
+  "scenario_2": {
 
-    },
-    "scenario_2": {
+  },
+  "scenario_2_extended": {
 
-    },
-    "scenario_2_extended": {
-
-    }
   }
-]
+}
