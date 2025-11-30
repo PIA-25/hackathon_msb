@@ -2,6 +2,7 @@ from google import genai
 from google.genai import types
 
 import os
+import time
 from datetime import datetime
 import json
 
@@ -28,23 +29,31 @@ def load_in_video_from_uri(video_uri: str) -> types.Video:
     return video
 
 
-def save_video(client: genai.Client,
-               video: types.Video,
-               save_dir: str,
-               local_download: bool = False) -> None:
+def poll_video(client: genai.Client, operation) -> types.Video:
 
-    client.files.download(file=video)
+    while not operation.done:
+        print("Waiting for video generation to complete...")
+        time.sleep(10)
+        operation = client.operations.get(operation)
 
-    if local_download:
-        # TODO: Decide to include "/" or not, between folder and file
-        output_file_name = f"{save_dir}video_{datetime.today()}.mp4"
-        video.save(path=output_file_name)
+    generated_video: types.Video = operation.response.generated_videos[0].video
+
+    print("Finished generating video:", generated_video.name)
+
+    return generated_video
+
+
+def save_video_locally(video: types.Video,
+                       save_dir: str) -> None:
+
+    todays_datetime = datetime.today().strftime("%Y_%m_%d_%H_%M_%S")
+
+    save_dir += "/" if not save_dir.endswith("/") else ""
+    output_file_name = f"{save_dir}video_{todays_datetime}.mp4"
+
+    video.save(path=output_file_name)
 
     print("Extended video saved!")
-
-    # Optional
-    # client.files.delete(name=uploaded_file.name)
-    # print(f"Deleted the uploaded file: {uploaded_file.name}")
 
 
 def create_ai_prompt(user_info: dict,
