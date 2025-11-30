@@ -74,11 +74,7 @@ def create_ai_prompt(user_info: dict,
     BASE = scenario["base"]
 
     # Context based on User's Choice
-    STORY = (
-        scenario["story"]
-        .replace("{age}", age)
-        .replace("{gender}", gender)
-    )
+    STORY = scenario["story"].replace("{age}", age).replace("{gender}", gender)
 
     # Narrative/Thematic Context
     THEME_CONTEXT = scenario["theme_context"]

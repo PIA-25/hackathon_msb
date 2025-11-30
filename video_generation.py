@@ -10,7 +10,7 @@ from utils import create_ai_prompt, save_video_locally, poll_video
 load_dotenv()
 
 
-def generate_video(client: genai.Client,
+def _generate_video(client: genai.Client,
                    base_prompt: str,
                    ext_prompt: str,
                    local_download_folder: str | None = None) -> dict:
@@ -74,7 +74,7 @@ def get_video(user_info: dict,
         extended=True
     )
 
-    video_info = generate_video(
+    video_info = _generate_video(
         client,
         base_prompt,
         extended_prompt,
