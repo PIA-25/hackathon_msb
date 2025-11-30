@@ -1,20 +1,39 @@
 {
-  "scenario_1": {
-    "base_prompt": "A low-angle, shaky, handheld camera shot of a dark, smoke-filled, destroyed city street at dawn. Cinematic, high contrast, photo-realistic.",
-    "flee": "The scene focuses on a {age}-year-old {gender} desperately running towards a crowded checkpoint. They carry a small backpack and look over their shoulder in panic. The shot should emphasize the chaos and urgency of evacuation. Show other civilians climbing into a military-style vehicle.",
-    "stay": "The scene follows a determined {age}-year-old {gender} wearing a tactical vest. They are crouching behind rubble, aiming a rifle. The shot should focus on their intense concentration and the defensive posture, with dust and debris swirling around. A comrade waves them forward.",
-    "theme_context": "The audio should feature distant thunderous explosions, followed by immediate silence. The clip must maintain a consistent camera shake to convey realism."
-  },
-  "scenario_1_extended": {
-    "base_prompt": "A continuous handheld tracking shot transitioning deeper into the devastated city. Early sunlight attempts to penetrate dense smoke, creating dramatic silhouettes. Photo-realistic, cinematic motion blur.",
-    "flee": "The {age}-year-old {gender} finally reaches the checkpoint as soldiers shout orders. The scene shows the panic of people pushing to board vehicles. The camera sweeps past the protagonist as they help someone stand, hesitating before stepping into the transport. Emphasize emotional conflict — leaving or staying behind.",
-    "stay": "The {age}-year-old {gender} moves from cover to cover with a small squad. The camera remains close, capturing determined breaths and glances exchanged between teammates. Sparks and falling debris hint at ongoing threats off-screen, maintaining tension without explicit violence.",
-    "theme_context": "Sound design includes closer aircraft rumble overhead and radio chatter cutting in and out. The camera shake should lessen slightly to reflect a more controlled movement while still showing urgency."
-  },
-  "scenario_2": {
+  "stay": {
+    "scenario_1": {
+      "base": "A calm, handheld documentary-style side-angle shot inside a modern Swedish high school classroom. The {age}-year-old {gender} is seated closest to the door, which is clearly visible in the frame. Cloudy daylight filters softly through the windows. Swedish posters and class schedules decorate the walls. The teacher stands at the front, speaking Swedish, delivering the serious announcement: \"I have been notified that a war has begun, we have to stay here until further instructions.\" The mood is tense but controlled, photo-realistic with a soft emotional focus.",
+      "story": "The camera remains positioned so the door and the {age}-year-old {gender} are both in view, seen from the side profile. They glance repeatedly between the teacher and the door, gripping their backpack tightly. Subtle camera sway emphasizes uneasiness. The classroom stays quiet except for nervous shifting among students, highlighting the internal struggle to stay put.",
+      "theme_context": "Muted ambience: distant faint siren-like hum outside the school, gentle wind against windows. The teacher's calm voice fills the room. No chaos, no explosions — only quiet tension and uncertainty. Maintain gentle handheld realism."
+    },
+    "scenario_1_extended": {
+      "base": "A continuous handheld side-facing shot, unchanged camera position, maintaining locked focus on the door and the {age}-year-old {gender} in the same frame. The classroom remains softly lit by cloudy daylight. The announcement is over, and students begin adjusting to the situation with subdued movement. Photo-realistic, emotional warmth emerging.",
+      "story": "The {age}-year-old {gender} slowly releases their grip on the backpack, turning away from the door. They take a deep, steadying breath and sit fully back in their chair. A nearby classmate offers a small reassuring smile. The teacher continues speaking calmly in Swedish, encouraging everyone to stay together and remain hopeful. Subtle camera push-in to reinforce safety in the classroom.",
+      "theme_context": "Soft comforting ambience — chairs quietly moving, low supportive voices, the hum of ventilation. Camera shake softens noticeably, reflecting growing stability and hopefulness."
+    },
+    "scenario_2": {
+      "base": "Handheld tracking shot as students quietly gather their belongings. The camera follows the {age}-year-old {gender} from the side as they exit the classroom along with the others. The hallway is bright with cloudy daylight streaming through high windows. Swedish safety posters and evacuation maps line the walls. A calm school staff member directs students toward the main entrance. Subtle movement, photo-realistic, steady emotional focus.",
+      "story": "As the class steps outside, the camera remains side-on to the {age}-year-old {gender}, capturing their hesitation. Two buses wait outside the school: one with classmates boarding under the teacher’s supervision, and another parked a short distance away labeled with the student’s home district. The teacher gently urges students to stay together. The {age}-year-old {gender} looks between the two buses — a difficult decision forming.",
+      "theme_context": "Soft outdoor ambience — distant city sounds, low wind, quiet murmurs of students lining up. Calm but uncertain tone. Maintain subtle handheld realism, no panic or abrupt motion."
+    },
+    "scenario_2_extended": {
+      "base": "A continuous handheld shot from the same perspective. The {age}-year-old {gender} takes a deep breath and steps forward toward the bus where classmates gather. Cloudy light reflects softly on bus windows. The teacher offers a small nod of reassurance as the student approaches.",
+      "story": "The {age}-year-old {gender} climbs aboard the same bus as the others, choosing to stay with their teacher and friends. Inside, students speak quietly and supportively. The student takes a seat near the window, looking out briefly toward the other bus before shifting focus back to their classmates. A sense of safety grows.",
+      "theme_context": "Interior bus ambience — seat fabric rustling, soft engine idle, students talking in low hopeful tones. Camera shake slightly reduced to reflect relief and togetherness."
+    },
+    "scenario_3": {
 
+    },
+    "scenario_3_extended": {
+
+    },
+    "scenario_4": {
+
+    },
+    "scenario_4_extended": {
+
+    }
   },
-  "scenario_2_extended": {
+  "flee": {
 
   }
 }
