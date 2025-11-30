@@ -104,16 +104,17 @@ if __name__ == "__main__":
 
     scenario_number = 2
 
-    video = get_video(
-        user_info,
-        scenario_number,
-        video_folder
-    )
+    for i in range(4):
+        video = get_video(
+            user_info,
+            i+1,
+            video_folder
+        )
 
-    #print(video["video_bytes"])
-    print(video["uri"])
-    print(video["locally_downloaded"])
-    print(video["pause_at_seconds"])
+        #print(video["video_bytes"])
+        print(video["uri"])
+        print(video["locally_downloaded"])
+        print(video["pause_at_seconds"])
 
     # taktisk, logisk, lojal, omtänksam, riskbenägen, försiktig, pragmatisk, moralisk
 
