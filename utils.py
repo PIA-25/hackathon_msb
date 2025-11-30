@@ -38,7 +38,7 @@ def poll_video(client: genai.Client,
 
     generated_video: types.Video = operation.response.generated_videos[0].video
 
-    print("Finished generating video:", generated_video.name)
+    print("Finished generating video!")
 
     return generated_video
 
