@@ -71,12 +71,24 @@ def create_ai_prompt(user_info: dict,
         scenario = json.load(file)[strategy][scenario_key]
 
     # Base Cinematic Style for consistency
-    BASE = scenario["base"]
+    BASE = (
+        scenario["base"]
+        .replace("{age}", age)
+        .replace("{gender}", gender)
+    )
 
     # Context based on User's Choice
-    STORY = scenario["story"].replace("{age}", age).replace("{gender}", gender)
+    STORY = (
+        scenario["story"]
+        .replace("{age}", age)
+        .replace("{gender}", gender)
+    )
 
     # Narrative/Thematic Context
-    THEME_CONTEXT = scenario["theme_context"]
+    THEME_CONTEXT = (
+        scenario["theme_context"]
+        .replace("{age}", age)
+        .replace("{gender}", gender)
+    )
 
     return f"{BASE} {STORY} {THEME_CONTEXT}"
