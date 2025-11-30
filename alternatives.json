@@ -1,0 +1,31 @@
+{
+  "stay": {
+    "scenario_1": {
+      "a": "Stanna kvar i klassrummet",
+      "b": "Dra hem och kolla till familjen",
+      "a_msg": "",
+      "b_msg": ""
+    },
+    "scenario_2": {
+      "a": "",
+      "b": "",
+      "a_msg": "",
+      "b_msg": ""
+    },
+    "scenario_3": {
+      "a": "",
+      "b": "",
+      "a_msg": "",
+      "b_msg": ""
+    },
+    "scenario_4": {
+      "a": "",
+      "b": "",
+      "a_msg": "",
+      "b_msg": ""
+    }
+  },
+  "flee": {
+
+  }
+}
