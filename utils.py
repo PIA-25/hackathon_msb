@@ -29,7 +29,8 @@ def load_in_video_from_uri(video_uri: str) -> types.Video:
     return video
 
 
-def poll_video(client: genai.Client, operation) -> types.Video:
+def poll_video(client: genai.Client,
+               operation: types.GenerateVideosOperation) -> types.Video:
 
     while not operation.done:
         print("Waiting for video generation to complete...")
