@@ -1,7 +1,6 @@
 from google import genai
 from google.genai import types
 
-import os
 import time
 from datetime import datetime
 import json
