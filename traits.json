@@ -1,0 +1,95 @@
+{
+  "stay": {
+    "scenario_1": {
+      "a": {
+        "taktisk": 4,
+        "logisk": 3,
+        "lojal": 5,
+        "omtänksam": 3,
+        "riskbenägen": -4,
+        "försiktig": 5,
+        "pragmatisk": 4,
+        "moralisk": 2
+      },
+      "b": {
+        "taktisk": -3,
+        "logisk": -3,
+        "lojal": -5,
+        "omtänksam": 2,
+        "riskbenägen": 4,
+        "försiktig": -5,
+        "pragmatisk": -2,
+        "moralisk": -1
+      }
+    },
+    "scenario_2": {
+      "a": {
+        "taktisk": -2,
+        "logisk": -4,
+        "lojal": -3,
+        "omtänksam": 0,
+        "riskbenägen": 3,
+        "försiktig": -4,
+        "pragmatisk": -3,
+        "moralisk": -1
+      },
+      "b": {
+        "taktisk": 4,
+        "logisk": 5,
+        "lojal": 4,
+        "omtänksam": 3,
+        "riskbenägen": -3,
+        "försiktig": 4,
+        "pragmatisk": 5,
+        "moralisk": 3
+      }
+    },
+    "scenario_3": {
+      "a": {
+        "taktisk": -4,
+        "logisk": -5,
+        "lojal": -4,
+        "omtänksam": 0,
+        "riskbenägen": 5,
+        "försiktig": -5,
+        "pragmatisk": -3,
+        "moralisk": -2
+      },
+      "b": {
+        "taktisk": 3,
+        "logisk": 5,
+        "lojal": 3,
+        "omtänksam": 4,
+        "riskbenägen": -5,
+        "försiktig": 5,
+        "pragmatisk": 4,
+        "moralisk": 4
+      }
+    },
+    "scenario_4": {
+      "a": {
+        "taktisk": -1,
+        "logisk": -3,
+        "lojal": -2,
+        "omtänksam": 0,
+        "riskbenägen": 4,
+        "försiktig": -3,
+        "pragmatisk": 0,
+        "moralisk": -2
+      },
+      "b": {
+        "taktisk": 5,
+        "logisk": 4,
+        "lojal": 5,
+        "omtänksam": 2,
+        "riskbenägen": -5,
+        "försiktig": 5,
+        "pragmatisk": 5,
+        "moralisk": 4
+      }
+    }
+  },
+  "flee": {
+
+  }
+}

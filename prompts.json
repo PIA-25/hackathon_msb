@@ -21,16 +21,24 @@
       "theme_context": "Interior bus ambience — seat fabric rustling, soft engine idle, students talking in low hopeful tones. Camera shake slightly reduced to reflect relief and togetherness."
     },
     "scenario_3": {
-
+      "base": "A steady, ground-level wide shot of a bustling, modern community shelter—likely a repurposed school gymnasium or civic center. The space is filled with Swedish citizens of all ages, calmly organized. The {age}-year-old {gender} is sitting with their belongings near a large, clear whiteboard detailing shelter rules and local emergency contact information in Swedish. The lighting is functional but a bit harsh, reflective of the utilitarian setting. Photo-realistic, focused on community resilience.",
+      "story": "The {age}-year-old {gender} is watching a young person nearby who is preparing to leave, looking visibly distressed. The exit door is in the background, clearly visible. A shelter staff member approaches the young person, offering a comforting hand and urging them to stay, pointing toward the community board. The {age}-year-old {gender} looks from the comforting staff member to the distant, empty emergency exit door (the 'bad' choice) — their own decision is reflected in their gaze.",
+      "theme_context": "Interior ambience: Low, continuous hum of the ventilation system, quiet murmuring of many people, and the occasional calm, authoritative voice of a staff member over a low-volume loudspeaker. The mood is tense but highly organized. Maintain steady realism."
     },
     "scenario_3_extended": {
-
+      "base": "A close-up, warm handheld shot focused on the {age}-year-old {gender}'s face, then panning slowly to the community board. The light softens, reflecting hope. The staff member remains in the frame, turning their attention to the {age}-year-old {gender}. Photo-realistic, focus on trust and relief.",
+      "story": "The {age}-year-old {gender} turns away from the distant exit door and focuses on the detailed information on the large whiteboard. The shelter staff member notices this, offering a genuine, supportive smile and handing them a bottle of water and a small brochure outlining local support services. The student relaxes, feeling a sense of commitment to the community effort. The camera gently pans back to include the nearby supportive people.",
+      "theme_context": "Warm supportive ambience: The general murmur of the crowd fades slightly in focus, replaced by a closer, more personal exchange. A feeling of having chosen correctly and a growing sense of security in the structured environment. Camera shake minimizes, suggesting stability."
     },
     "scenario_4": {
-
+      "base": "A dramatic, low-angle shot looking up at the {age}-year-old {gender} standing in a narrow hallway of their family's apartment building. The building feels old but well-maintained, with classic Swedish wood trim and patterned wallpaper. They are holding a phone, watching a live stream or news feed. A nearby window shows a distant, faint glow on the horizon (suggesting conflict). Photo-realistic, high emotional intensity.",
+      "story": "The {age}-year-old {gender} receives a text message—an official Civil Defense instruction from the government, advising all citizens to stay indoors and follow local blackout procedures. Simultaneously, the phone rings: an unknown number (the 'bad' choice) flashes brightly. The official instruction remains visible on the screen. The {age}-year-old {gender} hovers their finger between accepting the unknown call and following the official text instruction, the distant glow from the window adding pressure.",
+      "theme_context": "Interior ambience: The only sound is the persistent, anxiety-inducing *ring* of the unknown call, sharply contrasting with the silence of the apartment. The air feels heavy and still. Emphasize the visual contrast between the glowing phone screen and the dim hallway. Maintain tense, close-up realism."
     },
     "scenario_4_extended": {
-
+      "base": "A continuous close-up shot of the {age}-year-old {gender}'s hand on the phone. The ringing stops as the phone is locked. The student closes the blackout curtains on the nearby window. The hallway becomes almost completely dark, save for the soft glow of a small, battery-operated emergency lantern. Photo-realistic, focus on discipline and duty.",
+      "story": "The {age}-year-old {gender} follows the official instructions, silencing the phone and closing the curtains. They move calmly to a pre-designated safe space in the apartment (like a basement door or inner room, visible in the background), picking up a small, pre-packed survival kit. A low-volume radio broadcast in Swedish provides calm, official updates, confirming the necessity of the blackout. The act of following the instructions brings immediate relief and purpose.",
+      "theme_context": "Silent, disciplined ambience: The darkness is thick and quiet, broken only by the low, steady voice of the radio broadcaster. The feeling is one of purposeful compliance and readiness. The camera movement is deliberate and steady, reflecting control."
     }
   },
   "flee": {

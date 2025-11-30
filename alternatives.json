@@ -3,26 +3,26 @@
     "scenario_1": {
       "a": "Stanna kvar i klassrummet",
       "b": "Dra hem och kolla till familjen",
-      "a_msg": "",
-      "b_msg": ""
+      "a_msg": "BRA VAL: Under krigstid och larm är det primära att följa de instruktioner som ges av ansvarig personal (läraren/skolan). Att **stanna** minskar risken och låter dig vara en del av skolans organiserade evakuering.",
+      "b_msg": "DÅLIGT VAL: Att **lämna** en säker plats mot tillsägelse i en krissituation riskerar inte bara din egen säkerhet, utan skapar också oordning och försvårar det viktiga arbete som personalen behöver göra för att skydda alla elever. Du bör inte röra dig utan tydliga instruktioner."
     },
     "scenario_2": {
       "a": "Åk med den vita bussen som tar dig hem",
       "b": "Åk med den gula bussen som läraren vill att alla ska åka med",
-      "a_msg": "",
-      "b_msg": ""
+      "a_msg": "DÅLIGT VAL: Även om bussen går hem, bryter du mot den organiserade evakueringen. I krigstid är den **organiserade förflyttningen** från skolan den säkraste vägen, då myndigheterna planerat var resurser och skydd finns. Att åka hem på egen hand kan leda dig rakt in i ett osäkert område eller lämna dig utan statligt stöd.",
+      "b_msg": "BRA VAL: I kris och krig är det avgörande att **följa myndigheters och skolans instruktioner** för evakuering. Den gula bussen tar dig till en utsedd, skyddad plats där du är registrerad och får stöd. Att hålla ihop med gruppen är ett säkrare val."
     },
     "scenario_3": {
-      "a": "",
-      "b": "",
-      "a_msg": "",
-      "b_msg": ""
+      "a": "Gå mot nödutgången och försök fly från centret",
+      "b": "Stanna kvar i samlingslokalen och läs instruktionerna på anslagstavlan",
+      "a_msg": "DÅLIGT VAL: Att **fly** från en organiserad samlingslokal/skyddsplats är mycket farligt. Det finns en anledning till att platsen är utsedd, och att röra sig på okända vägar under pågående konflikt utan instruktioner kan innebära livsfara och bryter mot principen om att bidra till ordningen.",
+      "b_msg": "BRA VAL: Genom att **stanna kvar** i den organiserade samlingslokalen och läsa instruktionerna visar du disciplin och hjälper till att upprätthålla ordningen. Samlingslokalen är troligtvis den säkraste platsen för tillfället, och du får vital information och hjälp där."
     },
     "scenario_4": {
-      "a": "",
-      "b": "",
-      "a_msg": "",
-      "b_msg": ""
+      "a": "Svara i telefonen på det okända numret",
+      "b": "Låsa skärmen, följa texten från Civilförsvaret och mörklägga",
+      "a_msg": "DÅLIGT VAL: I krissituationer kan okända samtal vara försök till desinformation, spionage eller att locka ut dig i fara (**bluff**) för att bedriva fiendtlig verksamhet. Du ska alltid prioritera **officiella instruktioner** från kända källor, som Civilförsvaret.",
+      "b_msg": "BRA VAL: Att **följa Civilförsvarets/Myndigheternas instruktioner** (som att mörklägga och stanna inomhus) är en laglig skyldighet som skyddar både dig och nationen. Detta val visar på efterlevnad, disciplin och att du agerar pålitligt i kris."
     }
   },
   "flee": {
