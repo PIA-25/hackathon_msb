@@ -53,7 +53,7 @@ def save_video_locally(video: types.Video,
 
     video.save(path=output_file_name)
 
-    print("Extended video saved!")
+    print("Video saved!")
 
 
 def create_ai_prompt(user_info: dict,
@@ -68,34 +68,19 @@ def create_ai_prompt(user_info: dict,
     scenario_key += "_extended" if extended else ""
 
     with open("prompts.json", "r") as file:
-        scenario = json.load(file)[scenario_key]
+        scenario = json.load(file)[strategy][scenario_key]
 
     # Base Cinematic Style for consistency
-    BASE_STYLE = (
-        scenario["base_prompt"]
-        .replace("{age}", age)
-        .replace("{gender}", gender)
-    )
+    BASE = scenario["base"]
 
     # Context based on User's Choice
-    if strategy == 'flee':
-        ACTION_SCENE = (
-            scenario["flee"]
-            .replace("{age}", age)
-            .replace("{gender}", gender)
-        )
-    else:  # stay
-        ACTION_SCENE = (
-            scenario["stay"]
-            .replace("{age}", age)
-            .replace("{gender}", gender)
-        )
-
-    # Narrative/Thematic Context
-    THEME_CONTEXT = (
-        scenario["theme_context"]
+    STORY = (
+        scenario["story"]
         .replace("{age}", age)
         .replace("{gender}", gender)
     )
 
-    return f"{BASE_STYLE} {ACTION_SCENE} {THEME_CONTEXT}"
+    # Narrative/Thematic Context
+    THEME_CONTEXT = scenario["theme_context"]
+
+    return f"{BASE} {STORY} {THEME_CONTEXT}"
