@@ -1,6 +1,7 @@
 from google import genai
 from google.genai import types
 
+import os
 import time
 from datetime import datetime
 import json
@@ -46,6 +47,8 @@ def poll_video(client: genai.Client,
 def save_video_locally(video: types.Video,
                        save_dir: str) -> None:
 
+    os.makedirs(save_dir, exist_ok=True)
+
     todays_datetime = datetime.today().strftime("%Y_%m_%d_%H_%M_%S")
 
     save_dir += "/" if not save_dir.endswith("/") else ""
@@ -60,35 +63,23 @@ def create_ai_prompt(user_info: dict,
                      scenario_number: int,
                      extended: bool = False) -> str:
 
-    strategy = user_info["strategy"]
     age = user_info["age"]
     gender = user_info["gender"]
 
     scenario_key = f"scenario_{scenario_number}"
-    scenario_key += "_extended" if extended else ""
+
+    if extended:
+        prompt_type = "ext_prompt"
+    else:
+        prompt_type = "base_prompt"
 
     with open("prompts.json", "r") as file:
-        scenario = json.load(file)[strategy][scenario_key]
+        scenario = json.load(file)[scenario_key]
 
-    # Base Cinematic Style for consistency
-    BASE = (
-        scenario["base"]
+    prompt = (
+        scenario[prompt_type]
         .replace("{age}", age)
         .replace("{gender}", gender)
     )
 
-    # Context based on User's Choice
-    STORY = (
-        scenario["story"]
-        .replace("{age}", age)
-        .replace("{gender}", gender)
-    )
-
-    # Narrative/Thematic Context
-    THEME_CONTEXT = (
-        scenario["theme_context"]
-        .replace("{age}", age)
-        .replace("{gender}", gender)
-    )
-
-    return f"{BASE} {STORY} {THEME_CONTEXT}"
+    return f"{prompt}"
