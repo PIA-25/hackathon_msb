@@ -57,11 +57,8 @@ class RegistrationModal:
         # Form fields
         with ui.column().classes('w-full gap-4'):
             
-            # Namn
-            self._create_input_field('name', 'Namn', 'Ange ditt namn', 'person')
-            
-            # Personnummer
-            self._create_input_field('personal_number', 'Personnummer', 'ÅÅÅÅMMDD-XXXX', 'badge')
+            # Användarnamn
+            self._create_input_field('username', 'Användarnamn', 'Ange ditt användarnamn', 'person')
             
             # Ålder - Dropdown
             ui.label('Ålder').style(
@@ -77,6 +74,25 @@ class RegistrationModal:
             self.age = ui.select(
                 age_options,
                 value='25'
+            ).style(
+                f'background: {COLORS["background_secondary"]}; '
+                f'color: {COLORS["text_white"]}; '
+                f'border: 1px solid {COLORS["border_blue"]}; '
+                f'border-radius: 8px; '
+                f'padding: 0.5rem'
+            ).props('outlined')
+            
+            # Kön - Dropdown
+            ui.label('Kön').style(
+                f'color: {COLORS["text_white"]}; '
+                f'font-size: {SIZES["body"]}; '
+                f'font-weight: bold; '
+                f'margin-top: 1rem'
+            )
+            
+            self.gender = ui.select(
+                ['Man', 'Kvinna', 'Annat', 'Vill inte ange'],
+                value='Vill inte ange'
             ).style(
                 f'background: {COLORS["background_secondary"]}; '
                 f'color: {COLORS["text_white"]}; '
@@ -237,9 +253,9 @@ class RegistrationModal:
     
         # Collect data
         self.user_data = {
-            'name': self.name.value,
-            'personal_number': self.personal_number.value,
+            'username': self.username.value,
             'age': self.age.value,
+            'gender': self.gender.value,
             'occupation': self.occupation.value,
             'leadership_style': self.leadership_style.value,
             'priority': self.priority.value,
@@ -248,8 +264,8 @@ class RegistrationModal:
         }
             
         # Basic validation
-        if not self.user_data['name'] or not self.user_data['personal_number']:
-            ui.notify('Vänligen fyll i alla obligatoriska fält', type='negative')
+        if not self.user_data['username']:
+            ui.notify('Vänligen fyll i användarnamn', type='negative')
             return
             
         # TODO: Save to database here

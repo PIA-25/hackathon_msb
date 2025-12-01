@@ -43,4 +43,4 @@ create_stats_section()
 create_footer()         
 
 # Runs the app
-ui.run(title='Produktnamn', port=8080)
+ui.run(title='Crisis Mind', port=8080)

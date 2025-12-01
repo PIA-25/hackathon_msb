@@ -25,7 +25,7 @@ def create_header():
         with ui.row().classes('items-center gap-2'):
             ui.image('/assets/logo_icon.png').style('width: 60px; height: 60px') 
             
-            ui.label('PRODUKTNAMN').style(
+            ui.label('CRISIS MIND').style(
                 f'color: {COLORS["text_white"]}; '
                 f'font-size: 20px; '
                 f'font-weight: bold; '
