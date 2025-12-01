@@ -1,0 +1,138 @@
+{
+  "scenario_1": {
+    "base_prompt": "A calm, handheld documentary-style side-angle shot inside a modern Swedish high school classroom. The {age}-year-old {gender} is seated closest to the door, which is clearly visible in the frame. Cloudy daylight filters softly through the windows. Swedish posters and class schedules decorate the walls. The teacher stands at the front, speaking Swedish, delivering the serious announcement: \"I have been notified that a war has begun, we have to stay here until further instructions.\" The mood is tense but controlled, photo-realistic with a soft emotional focus. The camera remains positioned so the door and the {age}-year-old {gender} are both in view, seen from the side profile. They glance repeatedly between the teacher and the door, gripping their backpack tightly. Subtle camera sway emphasizes uneasiness. The classroom stays quiet except for nervous shifting among students, highlighting the internal struggle to stay put. Muted ambience: distant faint siren-like hum outside the school, gentle wind against windows. The teacher's calm voice fills the room. No chaos, no explosions — only quiet tension and uncertainty. Maintain gentle handheld realism.",
+    "ext_prompt": "A continuous handheld side-facing shot, unchanged camera position, maintaining locked focus on the door and the {age}-year-old {gender} in the same frame. The classroom remains softly lit by cloudy daylight. The announcement is over, and students begin adjusting to the situation with subdued movement. Photo-realistic, emotional warmth emerging. The {age}-year-old {gender} slowly releases their grip on the backpack, turning away from the door. They take a deep, steadying breath and sit fully back in their chair. A nearby classmate offers a small reassuring smile. The teacher continues speaking calmly in Swedish, encouraging everyone to stay together and remain hopeful. Subtle camera push-in to reinforce safety in the classroom. Soft comforting ambience — chairs quietly moving, low supportive voices, the hum of ventilation. Camera shake softens noticeably, reflecting growing stability and hopefulness.",
+    "alternatives": {
+      "a": "Stanna kvar i klassrummet",
+      "b": "Dra hem och kolla till familjen"
+    },
+    "messages": {
+      "a": "BRA VAL: Under krigstid och larm är det primära att följa de instruktioner som ges av ansvarig personal (läraren/skolan). Att **stanna** minskar risken och låter dig vara en del av skolans organiserade evakuering.",
+      "b": "DÅLIGT VAL: Att **lämna** en säker plats mot tillsägelse i en krissituation riskerar inte bara din egen säkerhet, utan skapar också oordning och försvårar det viktiga arbete som personalen behöver göra för att skydda alla elever. Du bör inte röra dig utan tydliga instruktioner."
+    },
+    "traits": {
+      "a": {
+        "taktisk": 4,
+        "logisk": 3,
+        "lojal": 5,
+        "omtänksam": 3,
+        "riskbenägen": -4,
+        "försiktig": 5,
+        "pragmatisk": 4,
+        "moralisk": 2
+      },
+      "b": {
+        "taktisk": -3,
+        "logisk": -3,
+        "lojal": -5,
+        "omtänksam": 2,
+        "riskbenägen": 4,
+        "försiktig": -5,
+        "pragmatisk": -2,
+        "moralisk": -1
+      }
+    }
+  },
+  "scenario_2": {
+    "base_prompt": "Handheld tracking shot as students quietly gather their belongings. The camera follows the {age}-year-old {gender} from the side as they exit the classroom along with the others. The hallway is bright with cloudy daylight streaming through high windows. Swedish safety posters and evacuation maps line the walls. A calm school staff member directs students toward the main entrance. Subtle movement, photo-realistic, steady emotional focus. As the class steps outside, the camera remains side-on to the {age}-year-old {gender}, capturing their hesitation. Two buses wait outside the school: one with classmates boarding under the teacher’s supervision, and another parked a short distance away labeled with the student’s home district. The teacher gently urges students to stay together. The {age}-year-old {gender} looks between the two buses — a difficult decision forming. Soft outdoor ambience — distant city sounds, low wind, quiet murmurs of students lining up. Calm but uncertain tone. Maintain subtle handheld realism, no panic or abrupt motion.",
+    "ext_prompt": "A continuous handheld shot from the same perspective. The {age}-year-old {gender} takes a deep breath and steps forward toward the bus where classmates gather. Cloudy light reflects softly on bus windows. The teacher offers a small nod of reassurance as the student approaches. The {age}-year-old {gender} climbs aboard the same bus as the others, choosing to stay with their teacher and friends. Inside, students speak quietly and supportively. The student takes a seat near the window, looking out briefly toward the other bus before shifting focus back to their classmates. A sense of safety grows. Interior bus ambience — seat fabric rustling, soft engine idle, students talking in low hopeful tones. Camera shake slightly reduced to reflect relief and togetherness.",
+    "alternatives": {
+      "a": "Åk med den vita bussen som tar dig hem",
+      "b": "Åk med den gula bussen som läraren vill att alla ska åka med"
+    },
+    "messages": {
+      "a": "DÅLIGT VAL: Även om bussen går hem, bryter du mot den organiserade evakueringen. I krigstid är den **organiserade förflyttningen** från skolan den säkraste vägen, då myndigheterna planerat var resurser och skydd finns. Att åka hem på egen hand kan leda dig rakt in i ett osäkert område eller lämna dig utan statligt stöd.",
+      "b": "BRA VAL: I kris och krig är det avgörande att **följa myndigheters och skolans instruktioner** för evakuering. Den gula bussen tar dig till en utsedd, skyddad plats där du är registrerad och får stöd. Att hålla ihop med gruppen är ett säkrare val."
+    },
+    "traits": {
+      "a": {
+        "taktisk": -2,
+        "logisk": -4,
+        "lojal": -3,
+        "omtänksam": 0,
+        "riskbenägen": 3,
+        "försiktig": -4,
+        "pragmatisk": -3,
+        "moralisk": -1
+      },
+      "b": {
+        "taktisk": 4,
+        "logisk": 5,
+        "lojal": 4,
+        "omtänksam": 3,
+        "riskbenägen": -3,
+        "försiktig": 4,
+        "pragmatisk": 5,
+        "moralisk": 3
+      }
+    }
+  },
+  "scenario_3": {
+    "base_prompt": "A steady, ground-level wide shot of a bustling, modern community shelter—likely a repurposed school gymnasium or civic center. The space is filled with Swedish citizens of all ages, calmly organized. The {age}-year-old {gender} is sitting with their belongings near a large, clear whiteboard detailing shelter rules and local emergency contact information in Swedish. The lighting is functional but a bit harsh, reflective of the utilitarian setting. Photo-realistic, focused on community resilience. The {age}-year-old {gender} is watching a young person nearby who is preparing to leave, looking visibly distressed. The exit door is in the background, clearly visible. A shelter staff member approaches the young person, offering a comforting hand and urging them to stay, pointing toward the community board. The {age}-year-old {gender} looks from the comforting staff member to the distant, empty emergency exit door (the 'bad' choice) — their own decision is reflected in their gaze. Interior ambience: Low, continuous hum of the ventilation system, quiet murmuring of many people, and the occasional calm, authoritative voice of a staff member over a low-volume loudspeaker. The mood is tense but highly organized. Maintain steady realism.",
+    "ext_prompt": "A close-up, warm handheld shot focused on the {age}-year-old {gender}'s face, then panning slowly to the community board. The light softens, reflecting hope. The staff member remains in the frame, turning their attention to the {age}-year-old {gender}. Photo-realistic, focus on trust and relief. The {age}-year-old {gender} turns away from the distant exit door and focuses on the detailed information on the large whiteboard. The shelter staff member notices this, offering a genuine, supportive smile and handing them a bottle of water and a small brochure outlining local support services. The student relaxes, feeling a sense of commitment to the community effort. The camera gently pans back to include the nearby supportive people. Warm supportive ambience: The general murmur of the crowd fades slightly in focus, replaced by a closer, more personal exchange. A feeling of having chosen correctly and a growing sense of security in the structured environment. Camera shake minimizes, suggesting stability.",
+    "alternatives": {
+      "a": "Gå mot nödutgången och försök fly från centret",
+      "b": "Stanna kvar i samlingslokalen och läs instruktionerna på anslagstavlan"
+    },
+    "messages": {
+      "a": "DÅLIGT VAL: Att **fly** från en organiserad samlingslokal/skyddsplats är mycket farligt. Det finns en anledning till att platsen är utsedd, och att röra sig på okända vägar under pågående konflikt utan instruktioner kan innebära livsfara och bryter mot principen om att bidra till ordningen.",
+      "b": "BRA VAL: Genom att **stanna kvar** i den organiserade samlingslokalen och läsa instruktionerna visar du disciplin och hjälper till att upprätthålla ordningen. Samlingslokalen är troligtvis den säkraste platsen för tillfället, och du får vital information och hjälp där."
+    },
+    "traits": {
+      "a": {
+        "taktisk": 4,
+        "logisk": 3,
+        "lojal": 5,
+        "omtänksam": 3,
+        "riskbenägen": -4,
+        "försiktig": 5,
+        "pragmatisk": 4,
+        "moralisk": 2
+      },
+      "b": {
+        "taktisk": -3,
+        "logisk": -3,
+        "lojal": -5,
+        "omtänksam": 2,
+        "riskbenägen": 4,
+        "försiktig": -5,
+        "pragmatisk": -2,
+        "moralisk": -1
+      }
+    }
+  },
+  "scenario_4": {
+    "base_prompt": "A dramatic, low-angle shot looking up at the {age}-year-old {gender} standing in a narrow hallway of their family's apartment building. The building feels old but well-maintained, with classic Swedish wood trim and patterned wallpaper. They are holding a phone, watching a live stream or news feed. A nearby window shows a distant, faint glow on the horizon (suggesting conflict). Photo-realistic, high emotional intensity. The {age}-year-old {gender} receives a text message—an official Civil Defense instruction from the government, advising all citizens to stay indoors and follow local blackout procedures. Simultaneously, the phone rings: an unknown number (the 'bad' choice) flashes brightly. The official instruction remains visible on the screen. The {age}-year-old {gender} hovers their finger between accepting the unknown call and following the official text instruction, the distant glow from the window adding pressure. Interior ambience: The only sound is the persistent, anxiety-inducing *ring* of the unknown call, sharply contrasting with the silence of the apartment. The air feels heavy and still. Emphasize the visual contrast between the glowing phone screen and the dim hallway. Maintain tense, close-up realism.",
+    "ext_prompt": "A continuous close-up shot of the {age}-year-old {gender}'s hand on the phone. The ringing stops as the phone is locked. The student closes the blackout curtains on the nearby window. The hallway becomes almost completely dark, save for the soft glow of a small, battery-operated emergency lantern. Photo-realistic, focus on discipline and duty. The {age}-year-old {gender} follows the official instructions, silencing the phone and closing the curtains. They move calmly to a pre-designated safe space in the apartment (like a basement door or inner room, visible in the background), picking up a small, pre-packed survival kit. A low-volume radio broadcast in Swedish provides calm, official updates, confirming the necessity of the blackout. The act of following the instructions brings immediate relief and purpose. Silent, disciplined ambience: The darkness is thick and quiet, broken only by the low, steady voice of the radio broadcaster. The feeling is one of purposeful compliance and readiness. The camera movement is deliberate and steady, reflecting control.",
+    "alternatives": {
+      "a": "Svara i telefonen på det okända numret",
+      "b": "Låsa skärmen, följa texten från Civilförsvaret och mörklägga"
+    },
+    "messages": {
+      "a": "DÅLIGT VAL: I krissituationer kan okända samtal vara försök till desinformation, spionage eller att locka ut dig i fara (**bluff**) för att bedriva fiendtlig verksamhet. Du ska alltid prioritera **officiella instruktioner** från kända källor, som Civilförsvaret.",
+      "b": "BRA VAL: Att **följa Civilförsvarets/Myndigheternas instruktioner** (som att mörklägga och stanna inomhus) är en laglig skyldighet som skyddar både dig och nationen. Detta val visar på efterlevnad, disciplin och att du agerar pålitligt i kris."
+    },
+    "traits": {
+      "a": {
+        "taktisk": -1,
+        "logisk": -3,
+        "lojal": -2,
+        "omtänksam": 0,
+        "riskbenägen": 4,
+        "försiktig": -3,
+        "pragmatisk": 0,
+        "moralisk": -2
+      },
+      "b": {
+        "taktisk": 5,
+        "logisk": 4,
+        "lojal": 5,
+        "omtänksam": 2,
+        "riskbenägen": -5,
+        "försiktig": 5,
+        "pragmatisk": 5,
+        "moralisk": 4
+      }
+    }
+  }
+}
