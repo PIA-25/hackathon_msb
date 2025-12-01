@@ -1,9 +1,10 @@
 CREATE TABLE users (
     user_id      SERIAL PRIMARY KEY,
-    firstname    VARCHAR(50),
-    lastname     VARCHAR(50),
+    username    VARCHAR(50),
     age          INT,
-    krigsberedd  BOOLEAN,          -- true = ja, false = nej
+    gender       VARCHAR(50),
+    occupation   VARCHAR(50),
+    war_ready  BOOLEAN,          -- true = ja, false = nej
     created_at   TIMESTAMP DEFAULT NOW()
 );
 

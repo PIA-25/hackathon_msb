@@ -1,7 +1,7 @@
 from typing import List, Optional, TYPE_CHECKING
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, Boolean, func, Table
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 
 if TYPE_CHECKING:
     # För type hints vid circular imports
