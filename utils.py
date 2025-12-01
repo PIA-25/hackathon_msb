@@ -1,6 +1,6 @@
 from google import genai
 from google.genai import types
-from google.api_core.exceptions import ResourceExhausted
+from google.genai.errors import ClientError
 
 import os
 import time
@@ -31,34 +31,25 @@ def load_in_video_from_uri(video_uri: str) -> types.Video:
 
 
 
-def poll_video(operation: types.GenerateVideosOperation,
+def poll_video(client: genai.Client,
+               operation: types.GenerateVideosOperation,
                poll_interval: int = 10,
-               wait_if_none: int = 60) -> types.Video | None:
+               rate_limit_delay: int = 60) -> types.Video:
 
     while True:
         try:
-            operation.reload()  # Refresh the operation status
+            while not operation.done:
 
-            if operation.done:
-                if operation.response and getattr(operation.response, "generated_videos", None):
-                    print("Finished generating video!")
-                    return operation.response.generated_videos[0].video
-                else:
-                    print("Operation finished but response is missing — retrying in 60s")
-                    time.sleep(wait_if_none)
-                    continue
+                print("Waiting for video generation to complete...")
+                time.sleep(poll_interval)
+                operation = client.operations.get(operation)
 
-            print("Waiting for video generation to complete...")
-            time.sleep(poll_interval)
+            print("Finished generating video!")
+            return operation.response.generated_videos[0].video
 
-        except ResourceExhausted:
+        except ClientError:
             print("Rate limit hit — waiting 60s...")
-            time.sleep(60)
-
-        except AttributeError:
-            # Covers cases where response is None
-            print("Response not ready — waiting 60s...")
-            time.sleep(wait_if_none)
+            time.sleep(rate_limit_delay)
 
 
 def save_video_locally(video: types.Video,

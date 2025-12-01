@@ -1,5 +1,6 @@
 from google import genai
 from google.genai import types
+from google.genai.errors import ClientError
 from dotenv import load_dotenv
 
 import os
@@ -11,35 +12,52 @@ load_dotenv()
 
 
 def _generate_video(client: genai.Client,
-                   base_prompt: str,
-                   ext_prompt: str,
-                   local_download_folder: str | None = None) -> dict:
+                    base_prompt: str,
+                    ext_prompt: str,
+                    local_download_folder: str | None = None) -> dict:
 
     base_video_duration = 8  # seconds
 
-    # Generate base video
-    base_operation = client.models.generate_videos(
-        model="veo-3.1-generate-preview",
-        prompt=base_prompt,
-        config=types.GenerateVideosConfig(
-            number_of_videos=1,
-            resolution="720p",
-            duration_seconds=base_video_duration
+    try:
+        # Generate base video
+        base_operation = client.models.generate_videos(
+            model="veo-3.1-generate-preview",
+            prompt=base_prompt,
+            config=types.GenerateVideosConfig(
+                number_of_videos=1,
+                resolution="720p",
+                duration_seconds=base_video_duration
+            )
         )
-    )
-    generated_base_video: types.Video = poll_video(base_operation)
+        generated_base_video: types.Video = poll_video(client, base_operation)
 
-    # Generate extended video
-    ext_operation = client.models.generate_videos(
-        model="veo-3.1-generate-preview",
-        video=generated_base_video,
-        prompt=ext_prompt,
-        config=types.GenerateVideosConfig(
-            number_of_videos=1,
-            resolution="720p"
+        # Generate extended video
+        ext_operation = client.models.generate_videos(
+            model="veo-3.1-generate-preview",
+            video=generated_base_video,
+            prompt=ext_prompt,
+            config=types.GenerateVideosConfig(
+                number_of_videos=1,
+                resolution="720p"
+            )
         )
-    )
-    generated_extended_video: types.Video = poll_video(ext_operation)
+    except ClientError as e:
+        if "RESOURCE_EXHAUSTED" in str(e):
+            print("Current video generation quota is exceeded! Can't generate more videos right now!")
+        else:
+            print(e)
+
+        client.close()
+
+        return {
+            "video_bytes": b"",
+            "uri": "",
+            "locally_downloaded": False,
+            "pause_at_seconds": 0,
+            "video_exists": False
+        }
+
+    generated_extended_video: types.Video = poll_video(client, ext_operation)
 
     # Download video to Google
     video_bytes = client.files.download(file=generated_extended_video)
@@ -51,7 +69,8 @@ def _generate_video(client: genai.Client,
         "video_bytes": video_bytes,
         "uri": generated_extended_video.uri,
         "locally_downloaded": True if local_download_folder else False,
-        "pause_at_seconds": base_video_duration
+        "pause_at_seconds": base_video_duration,
+        "video_exists": True
     }
 
     return video_info
