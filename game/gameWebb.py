@@ -7,7 +7,8 @@ import textwrap
 # LOAD JSON SCENARIOS
 # -------------------------------------------------------
 def load_scenarios():
-    with open('..\\mock_data\\mock.json', 'r', encoding='utf-8') as f:
+    with open('../mock_data/mock.json', 'r', encoding='utf-8') as f:
+#    with open('..\\mock_data\\mock.json', 'r', encoding='utf-8') as f:
         return json.load(f)["scenarios"]
 
 scenarios = load_scenarios()
@@ -38,7 +39,7 @@ class GameUI:
     def video_path(self, correct: bool) -> str:
         # Returns correct or wrong video based on choice
         suffix = 'correct' if correct else 'wrong'
-        return f'..\\mock_data\\video{self.index}.mp4'
+ #       return f'..\\mock_data\\video{self.index}.mp4'
 
     def handle_choice(self, choice: str) -> bool:
         """Returns True if choice was correct, False otherwise"""
@@ -75,7 +76,7 @@ def index():
     with ui.element('div').classes('w-full h-screen overflow-hidden'):
 
         # Video element - starts with first scenario's correct path
-        video = ui.video(f'..\\mock_data\\video0.mp4') \
+  #      video = ui.video(f'..\\mock_data\\video0.mp4') \
             .classes('absolute inset-0 w-full h-full object-cover')
 
         # -------------------------------------------------------
@@ -215,4 +216,4 @@ def index():
 # RUN APP
 # -------------------------------------------------------
 if __name__ in ('__main__', '__mp_main__'):
-    ui.run(title='Crisis Game')
+    ui.run(title='Crisis Game')2
