@@ -1,6 +1,9 @@
 import json
 from nicegui import ui
 import textwrap
+from backend.app.database.database import SessionLocal
+from backend.app.database.models import Scenario
+from backend.app.database.crud import save_user_choice
 
 
 # -------------------------------------------------------
@@ -8,10 +11,16 @@ import textwrap
 # -------------------------------------------------------
 def load_scenarios():
     with open('../mock_data/mock.json', 'r', encoding='utf-8') as f:
-#    with open('..\\mock_data\\mock.json', 'r', encoding='utf-8') as f:
         return json.load(f)["scenarios"]
 
-scenarios = load_scenarios()
+def load_scenarios_from_db():
+    db = SessionLocal()
+    scenarios = db.query(Scenario).all()
+    # Om du har en to_dict-metod:
+    return [s.to_dict() for s in scenarios]
+
+#scenarios = load_scenarios()
+scenarios = load_scenarios_from_db()
 
 
 # -------------------------------------------------------
@@ -39,7 +48,7 @@ class GameUI:
     def video_path(self, correct: bool) -> str:
         # Returns correct or wrong video based on choice
         suffix = 'correct' if correct else 'wrong'
- #       return f'..\\mock_data\\video{self.index}.mp4'
+        return f'../mock_data/video{self.index}.mp4'
 
     def handle_choice(self, choice: str) -> bool:
         """Returns True if choice was correct, False otherwise"""
@@ -76,7 +85,7 @@ def index():
     with ui.element('div').classes('w-full h-screen overflow-hidden'):
 
         # Video element - starts with first scenario's correct path
-  #      video = ui.video(f'..\\mock_data\\video0.mp4') \
+        video = ui.video(f'../mock_data/video0.mp4') \
             .classes('absolute inset-0 w-full h-full object-cover')
 
         # -------------------------------------------------------
@@ -175,21 +184,26 @@ def index():
         text_a.text = wrap_text(current['a'])
         text_b.text = wrap_text(current['b'])
 
+    current_user_id = 1  # Ersätt med riktig hantering senare!
+
     def on_click(choice: str):
         """Handle user's choice"""
-        is_correct = game. handle_choice(choice)
+        is_correct = game.handle_choice(choice)
         current = game.current
+
+        # Spara valet i databasen med user_id
+        db = SessionLocal()
+        save_user_choice(db, current_user_id, current['id'], choice, is_correct)
+        db.close()
 
         # Hide choice overlay
         choice_overlay.visible = False
 
         if is_correct:
-            # Show correct overlay with right_msg
             correct_msg_label.text = current['right_msg']
             correct_overlay.visible = True
         else:
-            # Show wrong overlay with wrong_msg
-            wrong_msg_label. text = current['wrong_msg']
+            wrong_msg_label.text = current['wrong_msg']
             wrong_overlay.visible = True
 
     def proceed_to_next():
@@ -216,4 +230,4 @@ def index():
 # RUN APP
 # -------------------------------------------------------
 if __name__ in ('__main__', '__mp_main__'):
-    ui.run(title='Crisis Game')2
+    ui.run(title='Crisis Game')
