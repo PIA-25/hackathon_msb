@@ -75,7 +75,7 @@ def create_hero_section():
             with ui.row().classes('gap-6 mt-4'):
                 
                 # Primary button - STARTA SPEL
-                ui.button('STARTA SPEL', on_click=start_game).props('flat').style(
+                ui.button('KOM IGÅNG', on_click=start_game).props('flat').style(
                     f'background: {COLORS["button_blue"]} !important; '
                     'color: white !important; '
                     'font-weight: bold; '
