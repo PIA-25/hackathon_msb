@@ -27,10 +27,10 @@ def _generate_video(client: genai.Client,
             duration_seconds=base_video_duration
         )
     )
-    generated_base_video: types.Video = poll_video(client, base_operation)
+    generated_base_video: types.Video = poll_video(base_operation)
 
     # Generate extended video
-    operation = client.models.generate_videos(
+    ext_operation = client.models.generate_videos(
         model="veo-3.1-generate-preview",
         video=generated_base_video,
         prompt=ext_prompt,
@@ -39,7 +39,7 @@ def _generate_video(client: genai.Client,
             resolution="720p"
         )
     )
-    generated_extended_video: types.Video = poll_video(client, operation)
+    generated_extended_video: types.Video = poll_video(ext_operation)
 
     # Download video to Google
     video_bytes = client.files.download(file=generated_extended_video)
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
     scenario_number = 2
 
-    for i in range(4):
+    for i in range(2):
         video = get_video(
             user_info,
             i+1,
