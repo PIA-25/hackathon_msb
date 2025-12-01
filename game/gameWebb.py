@@ -3,7 +3,7 @@ from nicegui import ui
 import textwrap
 from backend.app.database.database import SessionLocal
 from backend.app.database.models import Scenario
-from backend.app.database.crud import save_user_choice
+from backend.app.database.crud import save_user_choice_and_update_attributes
 
 
 # -------------------------------------------------------
@@ -191,9 +191,20 @@ def index():
         is_correct = game.handle_choice(choice)
         current = game.current
 
-        # Spara valet i databasen med user_id
+        # Hämta rätt choice_id beroende på val
+        if choice == 'a':
+            choice_id = current.get('a_id')
+        else:
+            choice_id = current.get('b_id')
+
         db = SessionLocal()
-        save_user_choice(db, current_user_id, current['id'], choice, is_correct)
+        save_user_choice_and_update_attributes(
+            db,
+            user_id=current_user_id,          # ID för aktuell spelare
+            level_id=current['level_id'],     # Nivå-ID
+            scenario_id=current['id'],        # Scenario-ID
+            choice_id=choice_id               # Val-ID
+        )
         db.close()
 
         # Hide choice overlay
