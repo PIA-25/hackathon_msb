@@ -42,7 +42,7 @@ def create_hero_section():
             )
             
             # Main title
-            ui.label('PRODUKTNAMN').style(
+            ui.label('CRISIS MIND').style(
                 f'color: {COLORS["hero_title"]}; '
                 f'font-size: {SIZES["hero_title"]}; ' 
                 'font-weight: 700; '
