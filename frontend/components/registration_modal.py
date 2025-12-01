@@ -6,6 +6,8 @@ Popup for user registration before starting the game
 
 from nicegui import ui
 from config.theme import COLORS, SIZES, EFFECTS
+from backend.app.database.models import User
+from backend.app.database.database import SessionLocal
 
 class RegistrationModal:
     def __init__(self):
@@ -250,33 +252,46 @@ class RegistrationModal:
     
     def _submit(self):
         """Validates and saves user data, then redirects to game"""
-    
-        # Collect data
-        self.user_data = {
-            'username': self.username.value,
-            'age': self.age.value,
-            'gender': self.gender.value,
-            'occupation': self.occupation.value,
-            'leadership_style': self.leadership_style.value,
-            'priority': self.priority.value,
-            'team_role': self.team_role.value,
-            'risk_tolerance': self.risk_tolerance.value
-        }
-            
+        
         # Basic validation
-        if not self.user_data['username']:
-            ui.notify('Vänligen fyll i användarnamn', type='negative')
+        if not self.username.value:
+            ui.notify("Vänligen fyll i användarnamn", type="negative")
             return
+    
+        db = SessionLocal()
+        try:
+            new_user = User(
+                username=self.username.value,
+                age=int(self.age.value),
+                gender=self.gender.value,
+                occupation=self.occupation.value,
+                leadership_style=self.leadership_style.value,
+                priority=self.priority.value,
+                team_role=self.team_role.value,
+                risk_tolerance=self.risk_tolerance.value
+            )
+            db.add(new_user)
+            db.commit()
+            db.refresh(new_user)
             
-        # TODO: Save to database here
-        print(f"User data to save: {self.user_data}")
+            print(f" User saved with ID: {new_user.user_id}")
+            print(f" User data: username={new_user.username}, age={new_user.age}, gender={new_user.gender}")
+                
+            # Close modal
+            self.dialog.close()
+            ui.notify('Registrering klar! Startar spelet...', type='positive') 
             
-        # Close modal
-        self.dialog.close()
+            # TODO: Navigate to game page
+            # ui.open('/game')
+        
+        except Exception as e:
+                db.rollback()
+                ui.notify(f"Databasfel: {str(e)}", type="negative")
+                print(f"Database error: {e}")
+        finally:
+            db.close()
             
-        # TODO: Navigate to game page
-        # ui.open('/game')
-        ui.notify('Registrering klar! Startar spelet...', type='positive')
+        
 
 
 # Create global instance

@@ -4,18 +4,32 @@ Landing Page
 MAIN FILE - imports and combines all components
 """
 
+import sys
+import os
+
+# Sätt upp rätt sökvägar
+frontend_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(frontend_dir)
+sys.path.insert(0, project_root)
+
 from nicegui import ui, app
 from components.header import create_header
 from components.hero import create_hero_section
 from components.features import create_features_section
 from components.stats import create_stats_section
 from components.footer import create_footer
+import os
+from backend.app.database.models import User, Level, Scenario, ChoiceOption, UserChoice, Attribute
+from backend.app.database.database import Base, engine, init_db
+
+print("Creating database tables...")
+init_db()
+print("Database tables created!")
+
+app.add_static_files('/assets', os.path.join(frontend_dir, 'assets'))
 
 # Enable dark mode
 ui.dark_mode().enable()
-
-app.add_static_files('/assets', 'assets'
-)
 
 # Covers whole screen with background color
 ui.add_head_html('''

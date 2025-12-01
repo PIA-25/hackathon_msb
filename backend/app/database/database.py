@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.exc import OperationalError
 
@@ -10,14 +10,14 @@ try:
     engine = create_engine(DATABASE_URL, echo=True)  # echo=True loggar alla sql frågor till konsolen
     # Testa anslutningen
     with engine.connect() as conn:
-        conn.execute("SELECT 1")
+        conn.execute(text("SELECT 1"))
     print("Database connection successful!")
 except OperationalError as e:
     print(f"Database connection failed: {e}")
-    engine = None
+    raise
 except Exception as e:
     print(f"Database connection error: {e}")
-    engine = None
+    raise
 
 """
 skapar session-fabrik för databassessioner
