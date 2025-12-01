@@ -19,6 +19,7 @@ class GameUI:
         if self.finished:
             return
 
+
         current = self.current
         if choice == current['correct']:
             self.feedback = 'Rätt val, du fortsätter...'
