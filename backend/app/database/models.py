@@ -38,10 +38,14 @@ class User(Base):
     __allow_unmapped__ = True
     
     user_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    firstname = Column(String(50), index=True)
-    lastname = Column(String(50), index=True)
+    username = Column(String(50), nullable=True)
+    gender = Column(String(50), nullable=True)
     age = Column(Integer, index=True)  # 18–29 år
-    krigsberedd = Column(Boolean, nullable=True)  # true = ja, false = nej
+    occupation = Column(String(50), nullable=True)
+    leadership_style = Column(String(50), nullable=True)
+    priority = Column(String(50), nullable=True)
+    team_role = Column(String(50), nullable=True)
+    risk_tolerance = Column(String(50), nullable=True)
     created_at = Column(DateTime, server_default=func.now())
 
     user_choices: "List[UserChoice]" = relationship("UserChoice", back_populates="user")
