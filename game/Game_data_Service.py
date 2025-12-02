@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 import logging
 
 # Import your existing modules
-from ./.backend/app/database/curd import (
+from ./.backend/app/database/curd import ( #crud eller curd? sebbe undrar
     get_scenario,
     get_choice_options,
     get_level,
