@@ -1,28 +1,74 @@
 {
   "scenarios": [
     {
-      "text": "Du befinner dig på universitetet när situationen plötsligt ändras.",
-      "a": "Jag stannar i det säkra området på universitetet tills nästa uppdatering.",
-      "b": "Jag cyklar hem för att vara med familjen och hämta mina saker.",
+      "id": 1,
+      "title": "Larmet på universitetet",
+      "text": "Du sitter på en föreläsning när alla mobiler vibrerar samtidigt – VMA, pushnotiser från Krisinformation och rykten om explosioner utanför stan. Föreläsaren säger att alla ska stanna kvar i byggnaden.  Du får ett sms från en familjemedlem: 'Kom hem nu.  Jag litar inte på att de har koll.' Du står vid dörren och måste bestämma dig.",
+      "a": "Jag stannar kvar på universitetet i det inre utrymmet som läraren pekar ut, åtminstone tills nästa officiella uppdatering.",
+      "b": "Jag cyklar hem nu på en gång för att vara med familjen och hämta mina egna saker, även om de säger att vi ska stanna.",
       "correct": "a",
-      "wrong_msg": "Du lämnar området trots instruktioner att stanna. Det kan öka riskerna och göra det svårare att hålla koll på var folk befinner sig.",
-      "right_msg": "Bra val. Du stannar kvar i det säkra området och minskar riskerna."
+      "wrong_msg": "Du prioriterar familjen framför lokala instruktioner.  Det kan kännas rationellt emotionellt, men ökar risken att hamna i otrygga lägen under pågående händelse och försvårar för myndigheter att ha koll på var folk befinner sig.  Beteendet signalerar stark familjelojalitet men högre grad av impuls framför gemensam struktur.",
+      "right_msg": "Du följer officiella rekommendationer och minskar risken att hamna i en oklar situation ute i stan. Beteendet visar tillit till strukturer och myndigheter samt förmåga att hantera oro utan att agera impulsivt."
     },
     {
-      "text": "In the forest you hear growling.",
-      "a": "Run away.",
-      "b": "Climb a tree.",
+      "id": 2,
+      "title": "Bussen, kompisen och de som inte förstår",
+      "text": "Du har blivit anvisad till ett skyddsrum och står vid en provisorisk uppsamlingsplats. Det regnar, människor står i kö till bussarna.  En grupp internationella studenter längre bak ser förvirrade ut medan volontärer ropar instruktioner på svenska. En volontär får ögonkontakt med dig: 'Vi behöver någon som kan hjälpa till att förklara för de där borta – de verkar inte fatta vad som händer.' Om du stannar i kön kommer du med första bussen.  Om du kliver ur kön för att hjälpa missar du troligen den.",
+      "a": "Jag stannar kvar i kön och går på första bussen.  Volontärerna får lösa resten, det är ju deras jobb.",
+      "b": "Jag kliver ur kön, pratar med volontären, hjälper till att förklara på engelska, även om jag missar första bussen.",
       "correct": "b",
-      "wrong_msg": "Running makes noise. The creature starts to chase you.",
-      "right_msg": "You climb the tree and stay out of reach of the creature."
+      "wrong_msg": "Du följer den mest direkt fördelaktiga vägen för dig själv och hamnar snabbt i säkerhet. Men människor som inte förstår språket får svårare att följa instruktioner, och risken ökar för felbeteenden, trängsel eller att någon hamnar fel.  Beteendet signalerar fokus på egen trygghet och begränsad vilja att ta extra ansvar.",
+      "right_msg": "Du prioriterar att minska risker för andra och täppa till ett konkret informationsgap. Det innebär personlig risk, men du stärker hela evakueringen – särskilt för de mest osäkra.  Beteendet signalerar solidaritet, initiativförmåga och ledarskap under osäkerhet."
     },
     {
-      "text": "From the tree you see a light in the distance.",
-      "a": "Climb down and walk to the light.",
-      "b": "Stay in the tree and wait.",
+      "id": 3,
+      "title": "Informationskriget: Familjens oro vs officiell info",
+      "text": "Du har kommit fram till skyddsrummet.  Folk sitter med filtar och mobiler. Du får notiser från flera håll samtidigt – Krisinformation säger 'Stanna där du är', men din kusin skickar en video på kaos vid stationen, TikTok säger 'de stänger vägarna snart', och din mamma undrar om de ska ta bilen och åka NU. Du känner att om du lugnar dem kanske du har fel, men om du gör dem mer stressade kanske du bidrar till kaos.",
+      "a": "Jag skriver till min familj att jag tror de borde åka nu innan det blir värre.  Jag delar videon från kusinen och TikTok-klippet och säger att det verkar allvarligare än vad myndigheterna säger.",
+      "b": "Jag säger till min familj att stanna där de är tills jag kollat med ansvariga i skyddsrummet och jämfört med Krisinformation.  Jag lovar att återkomma – men avråder från spontana beslut just nu.",
+      "correct": "b",
+      "wrong_msg": "Du drivs av stark omsorg om familjen och rädsla för att ligga steget efter. Men familjen kan hamna mitt i osäkra lägen, vägsystem som justeras eller trängsel som myndigheterna försöker undvika. Du bidrar till att obekräftad information styr beslut istället för samlad lägesbild.  Beteendet signalerar hög påverkan av starka bilder och rykten samt lägre källkritik i pressade lägen.",
+      "right_msg": "Du tar familjens oro på allvar men agerar inte på första starka känslan. Du använder officiella kanaler och lokalt ansvariga som källor, och kommunicerar lugnt med konkreta fakta. Beteendet signalerar källkritik under press och förmåga att bromsa impulsen – vilket minskar risken för farlig trängsel och felaktiga massrörelser."
+    },
+    {
+      "id": 4,
+      "title": "Din roll i dygnet: Hjälpa till nu eller säkra din framtid? ",
+      "text": "Det har blivit kväll i skyddsrummet.  Personalen ser trötta ut och volontärer ropar att de behöver unga vuxna som orkar ett längre pass imorgon. Samtidigt får du ett mejl från din arbetsgivare om ett viktigt digitalt möte tidigt nästa morgon – det handlar om framtida tjänster och är viktigt för din framtid.  Om du tar frivilligpasset blir du utmattad och kanske utan bra uppkoppling.  Om du säger nej kan du vila och fokusera på mötet.",
+      "a": "Jag skriver upp mig för frivilligpasset.  Även om jag blir trött och kanske missar eller presterar sämre på mötet imorgon, behövs jag här och nu.",
+      "b": "Jag tackar nej till frivilligpasset.  Jag vill orka delta i mötet imorgon – mitt jobb och min utbildning är också viktigt för min framtid.",
       "correct": "a",
-      "wrong_msg": "You wait too long and fall asleep. You lose your chance.",
-      "right_msg": "You walk to the light and find a safe place."
+      "wrong_msg": "Du ser din egen framtid som något du vill skydda, även i kris. Resonemanget 'om jag har ett bra jobb sen kan jag bidra mer långsiktigt' är förståeligt, men just nu är systemet ansträngt och behovet av frivilliga akut. Du väljer att inte kliva in trots att du hade kunnat.  Beteendet signalerar långsiktigt ego-fokus framför akut behov.",
+      "right_msg": "Du prioriterar konkret nytta för andra under en pågående kris och accepterar en direkt kostnad för din egen karriär. Din insats bidrar till att avlasta ett system som går på knäna.  Beteendet signalerar stark känsla av ansvar och plikt samt beredskap att offra kortsiktiga möjligheter för andras trygghet."
     }
-  ]
+  ],
+  "summary": {
+    "score_interpretation": {
+      "0-1": "Du tenderar att följa magkänsla och prioritera egen trygghet.",
+      "2-3": "Du balanserar egen trygghet och ansvar för andra.",
+      "4": "Du prioriterar ofta samhälle, struktur och källkritik."
+    },
+    "behavior_scales": [
+      {
+        "name": "Fokus",
+        "low": "Självcentrerad",
+        "high": "Solidarisk"
+      },
+      {
+        "name": "Beslutsfattande",
+        "low": "Impulsiv",
+        "high": "Eftertänksam"
+      },
+      {
+        "name": "Informationshantering",
+        "low": "Ryktesstyrd",
+        "high": "Källkritisk"
+      },
+      {
+        "name": "Tidsperspektiv",
+        "low": "Kortsiktigt fokus",
+        "high": "Långsiktigt ansvar"
+      }
+    ],
+    "closing_message": "Så här tenderade du att tänka första dygnet i Linköping. Vill du göra likadant om du spelar igen?"
+  }
 }

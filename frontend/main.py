@@ -21,6 +21,7 @@ from components.footer import create_footer
 import os
 from backend.app.database.models import User, Level, Scenario, ChoiceOption, UserChoice, Attribute
 from backend.app.database.database import Base, engine, init_db
+from mock_data import mock_game
 
 print("Creating database tables...")
 init_db()
@@ -28,33 +29,35 @@ print("Database tables created!")
 
 app.add_static_files('/assets', os.path.join(frontend_dir, 'assets'))
 
-# Enable dark mode
-ui.dark_mode().enable()
+@ui.page('/')
+def landing_page():
+    # Enable dark mode
+    ui.dark_mode().enable()
 
-# Covers whole screen with background color
-ui.add_head_html('''
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: #010510 !important;
-        }
-        .nicegui-content {
-            background: #010510 !important;
-        }
-    </style>
-''')
+    # Covers whole screen with background color
+    ui.add_head_html('''
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                background: #010510 !important;
+            }
+            .nicegui-content {
+                background: #010510 !important;
+            }
+        </style>
+    ''')
 
-# === BUILDS PAGE ===
-# Every function creates its own section on the page
+    # === BUILDS PAGE ===
+    # Every function creates its own section on the page
 
-create_header()          
-create_hero_section()
-create_features_section()
-create_stats_section()
-create_footer()         
+    create_header()          
+    create_hero_section()
+    create_features_section()
+    create_stats_section()
+    create_footer()         
 
 # Runs the app
 ui.run(title='Crisis Mind', port=8080)

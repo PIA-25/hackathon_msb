@@ -257,42 +257,43 @@ class RegistrationModal:
         if not self.username.value:
             ui.notify("Vänligen fyll i användarnamn", type="negative")
             return
-    
-        db = SessionLocal()
+        
         try:
-            new_user = User(
-                username=self.username.value,
-                age=int(self.age.value),
-                gender=self.gender.value,
-                occupation=self.occupation.value,
-                leadership_style=self.leadership_style.value,
-                priority=self.priority.value,
-                team_role=self.team_role.value,
-                risk_tolerance=self.risk_tolerance.value
-            )
-            db.add(new_user)
-            db.commit()
-            db.refresh(new_user)
-            
-            print(f" User saved with ID: {new_user.user_id}")
-            print(f" User data: username={new_user.username}, age={new_user.age}, gender={new_user.gender}")
+            db = SessionLocal()
+            try:
+                new_user = User(
+                    username=self.username.value,
+                    age=int(self.age.value),
+                    gender=self.gender.value,
+                    occupation=self.occupation.value,
+                    leadership_style=self.leadership_style.value,
+                    priority=self.priority.value,
+                    team_role=self.team_role.value,
+                    risk_tolerance=self.risk_tolerance.value
+                )
+                db.add(new_user)
+                db.commit()
+                db.refresh(new_user)
                 
-            # Close modal
-            self.dialog.close()
-            ui.notify('Registrering klar! Startar spelet...', type='positive') 
+                print(f" User saved with ID: {new_user.user_id}")
+                print(f" User data: username={new_user.username}, age={new_user.age}, gender={new_user.gender}")
+                    
             
-            # TODO: Navigate to game page
-            # ui.open('/game')
-        
+            except Exception as e:
+                    db.rollback()
+                    print(f"Database save error: {e}")
+            finally:
+                db.close()
         except Exception as e:
-                db.rollback()
-                ui.notify(f"Databasfel: {str(e)}", type="negative")
-                print(f"Database error: {e}")
-        finally:
-            db.close()
+            print(f"Database connection error: {e}")
+            print("Continuing without database...")  
             
-        
-
+        # Close modal
+        self.dialog.close()
+        ui.notify('Registrering klar! Startar spelet...', type='positive') 
+                    
+        # Navigate to game page
+        ui.navigate.to('/game')
 
 # Create global instance
 registration_modal = RegistrationModal()
