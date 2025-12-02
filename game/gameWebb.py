@@ -73,7 +73,7 @@ app.add_static_files('/mock_data', MOCK_DATA_DIR)
 # -------------------------------------------------------
 # PAGE UI
 # -------------------------------------------------------
-@ui.page('/')
+@ui.page('/game')
 def index():
     ui.add_head_html("""
     <link href="https://cdnjs.cloudflare.com/ajax/libs/JetBrainsMono/2.304.0/jetbrains-mono.min.css" rel="stylesheet">

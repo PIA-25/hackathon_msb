@@ -4,7 +4,7 @@ from sqlalchemy.exc import OperationalError
 
 #fixa .env fil för att inte lägga in lösenord och användarnamn i koden så vi ej pushar det till github
 #fixa även logiken med database_url
-DATABASE_URL = "postgresql://postgres:postgres@localhost:54821/hackathon_msb"
+DATABASE_URL = "postgresql://postgres:flatron7553@localhost:5432/test_db"
 
 try:
     engine = create_engine(DATABASE_URL, echo=True)  # echo=True loggar alla sql frågor till konsolen

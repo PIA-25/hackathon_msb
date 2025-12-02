@@ -3,6 +3,8 @@ import os
 from nicegui import ui, app
 import textwrap
 
+
+
 #mock spelet utan databas
 
 
@@ -66,7 +68,7 @@ app.add_static_files('/mock_data', SCRIPT_DIR)
 # -------------------------------------------------------
 # PAGE UI
 # -------------------------------------------------------
-@ui.page('/')
+@ui.page('/game')
 def index():
     ui.add_head_html("""
     <link href="https://cdnjs.cloudflare.com/ajax/libs/JetBrainsMono/2.304.0/jetbrains-mono.min.css" rel="stylesheet">
