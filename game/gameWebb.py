@@ -96,6 +96,13 @@ class GameUI:
     def current(self):
         return self.scenarios[self.index]
 
+    VIDEO_SEQUENCE = [
+    '/mock_data/video0.mp4',  # first scenario
+    '/mock_data/video1.mp4',  # second scenario
+    '/mock_data/video2.mp4',  # third scenario
+    '/mock_data/video3.mp4',
+]
+
     def video_path(self, correct: bool) -> str:
         return f'/mock_data/video{self.index}.mp4'
 
