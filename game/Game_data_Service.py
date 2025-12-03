@@ -21,7 +21,8 @@ from backend.app.database.crud import (
     get_user_attributes,
     create_user
 )
-from ..backend.app.database.database import SessionLocal
+from backend.app.database.database import SessionLocal
+from backend.app.database import models
 
 logger = logging.getLogger(__name__)
 

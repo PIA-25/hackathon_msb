@@ -81,7 +81,11 @@ def create_ai_prompt(user_info: dict,
     else:
         prompt_type = "base_prompt"
 
-    with open(os.path.join(os.getcwd(), "../ai/prompts.json"), "r") as file:
+    # Hitta prompts.json relativt till denna fil (utils.py)
+    utils_dir = os.path.dirname(os.path.abspath(__file__))
+    prompts_path = os.path.join(utils_dir, "prompts.json")
+    
+    with open(prompts_path, "r") as file:
         scenario = json.load(file)[scenario_key]
 
     prompt = (

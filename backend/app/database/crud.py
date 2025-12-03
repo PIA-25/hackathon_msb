@@ -11,16 +11,23 @@ Funktioner för att interagera med databasen för FRONTEND, GAME-ENGINE och AI
 """
 
 
-def create_user(db: Session, firstname: str, lastname: str, age: int, krigsberedd: Optional[bool] = None) -> Optional[models.User]:
+def create_user(db: Session, username: str, age: int, gender: Optional[str] = None, 
+                occupation: Optional[str] = None, leadership_style: Optional[str] = None,
+                priority: Optional[str] = None, team_role: Optional[str] = None,
+                risk_tolerance: Optional[str] = None) -> Optional[models.User]:
     """
     Skapar en ny användare i databasen.
     
     Args:
         db: Databassession
-        firstname: Förnamn
-        lastname: Efternamn
+        username: Användarnamn
         age: Ålder
-        krigsberedd: Om användaren är krigsberedd (optional)
+        gender: Kön (optional)
+        occupation: Yrke/Studieinriktning (optional)
+        leadership_style: Ledarstil (optional)
+        priority: Prioritering i krissituation (optional)
+        team_role: Teamroll (optional)
+        risk_tolerance: Riskbenägenhet (optional)
     
     Returns:
         User-objekt om framgångsrikt, None vid fel
@@ -30,15 +37,19 @@ def create_user(db: Session, firstname: str, lastname: str, age: int, krigsbered
     """
     try:
         user = models.User(
-            firstname=firstname,
-            lastname=lastname,
+            username=username,
             age=age,
-            krigsberedd=krigsberedd
+            gender=gender,
+            occupation=occupation,
+            leadership_style=leadership_style,
+            priority=priority,
+            team_role=team_role,
+            risk_tolerance=risk_tolerance
         )
         db.add(user)
         db.commit()
         db.refresh(user)
-        logger.info(f"Created user: {user.user_id} - {firstname} {lastname}")
+        logger.info(f"Created user: {user.user_id} - {username}")
         return user
     except SQLAlchemyError as e:
         db.rollback()
@@ -96,13 +107,14 @@ def get_choice_options(db: Session, scenario_id: int, is_good: Optional[bool] = 
         is_good: Om None, hämtar alla val. Om True, hämtar bara bra val. Om False, hämtar bara dåliga val.
     
     Returns:
-        Lista med ChoiceOption-objekt
+        Lista med ChoiceOption-objekt, sorterade efter choice_id för konsistens
     """
     try:
         query = db.query(models.ChoiceOption).filter(models.ChoiceOption.scenario_id == scenario_id)
         if is_good is not None:
             query = query.filter(models.ChoiceOption.is_good == is_good)
-        return query.all()
+        # Sortera efter choice_id för konsistent ordning
+        return query.order_by(models.ChoiceOption.choice_id).all()
     except SQLAlchemyError as e:
         logger.error(f"Error getting choice options for scenario {scenario_id}: {e}")
         raise

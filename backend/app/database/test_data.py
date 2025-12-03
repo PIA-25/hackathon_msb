@@ -42,7 +42,7 @@ def insert_initial_data(db: Session):
     db.add_all([user_alice, user_bob])
 
     db.commit()
-    print("✓ Insättning lyckades: 2 användare och 2 attribut har lagts till.")
+    print("Insättning lyckades: 2 användare och 2 attribut har lagts till.")
 
 
 def test_fetch_data():
