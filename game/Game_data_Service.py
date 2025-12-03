@@ -12,7 +12,7 @@ from sqlalchemy.exc import SQLAlchemyError
 import logging
 
 # Import your existing modules
-from ./.backend/app/database/curd import ( #crud eller curd? sebbe undrar
+from backend.app.database.crud import (
     get_scenario,
     get_choice_options,
     get_level,
@@ -21,7 +21,7 @@ from ./.backend/app/database/curd import ( #crud eller curd? sebbe undrar
     get_user_attributes,
     create_user
 )
-from .database import SessionLocal
+from ..backend.app.database.database import SessionLocal
 
 logger = logging.getLogger(__name__)
 
