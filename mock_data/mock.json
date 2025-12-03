@@ -32,13 +32,13 @@
     },
     {
       "id": 4,
-      "title": "Din roll i dygnet: Hjälpa till nu eller säkra din framtid? ",
-      "text": "Det har blivit kväll i skyddsrummet.  Personalen ser trötta ut och volontärer ropar att de behöver unga vuxna som orkar ett längre pass imorgon. Samtidigt får du ett mejl från din arbetsgivare om ett viktigt digitalt möte tidigt nästa morgon – det handlar om framtida tjänster och är viktigt för din framtid.  Om du tar frivilligpasset blir du utmattad och kanske utan bra uppkoppling.  Om du säger nej kan du vila och fokusera på mötet.",
-      "a": "Jag skriver upp mig för frivilligpasset.  Även om jag blir trött och kanske missar eller presterar sämre på mötet imorgon, behövs jag här och nu.",
-      "b": "Jag tackar nej till frivilligpasset.  Jag vill orka delta i mötet imorgon – mitt jobb och min utbildning är också viktigt för min framtid.",
+      "title": "Din roll i dygnet: Hjälpa till nu eller säkra din framtid?",
+      "text": "Bussen anländer till en regional uppsamlingsplats. Hallen är full av civila: studenter, äldre och barnfamiljer. Kommunens personal delar ut nödmat och vatten. Du står i kön, osäker på hur länge resurserna ska räcka. När du når bordet märker du att personalen är stressad och inte hinner kontrollera hur mycket varje person tar. Framför dig ligger flera matkit. Du tänker: “Kanske borde jag ta två… ingen vet hur det blir imorgon.” Du tar försiktigt ett extra kit. Längre bak i kön står en familj med två små barn. Barnen ser trötta och bleka ut. När de väl når bordet säger personalen: “Tyvärr… det här var de sista matkiten innan nästa leverans.” Du håller fortfarande i ditt extra. Du måste fatta ett beslut.",
+      "a": "Jag lämnar tillbaka det extra matkitet. Familjen behöver det mer än jag, även om det innebär att jag får mindre säkerhet framöver.",
+      "b": "Jag behåller båda matkiten. Ingen vet hur länge krisen varar, och jag måste prioritera min egen överlevnad.",
       "correct": "a",
-      "wrong_msg": "Du ser din egen framtid som något du vill skydda, även i kris. Resonemanget 'om jag har ett bra jobb sen kan jag bidra mer långsiktigt' är förståeligt, men just nu är systemet ansträngt och behovet av frivilliga akut. Du väljer att inte kliva in trots att du hade kunnat.  Beteendet signalerar långsiktigt ego-fokus framför akut behov.",
-      "right_msg": "Du prioriterar konkret nytta för andra under en pågående kris och accepterar en direkt kostnad för din egen karriär. Din insats bidrar till att avlasta ett system som går på knäna.  Beteendet signalerar stark känsla av ansvar och plikt samt beredskap att offra kortsiktiga möjligheter för andras trygghet."
+      "wrong_msg": "Att säkra din egen överlevnad känns rationellt, men här bidrar ditt val direkt till att en barnfamilj står utan mat. I akuta civila kriser väger omedelbara behov tyngst, och handlingen signalerar stark egenprioritering trots tydligt större behov hos andra.",
+      "right_msg": "Du agerar solidariskt trots osäkerhet kring framtiden. Att avstå från extra resurser i en knapp situation för att andra ska klara sig visar både empati och ansvar – och stärker gruppens chanser att klara krisen tillsammans."
     }
   ],
   "summary": {
@@ -65,8 +65,8 @@
       },
       {
         "name": "Tidsperspektiv",
-        "low": "Kortsiktigt fokus",
-        "high": "Långsiktigt ansvar"
+        "low": "Fokuserar på omedelbar trygghet och egna akuta behov",
+        "high": "Prioriterar gruppens akuta behov framför egen framtida säkerhet"
       }
     ],
     "closing_message": "Så här tenderade du att tänka första dygnet i Linköping. Vill du göra likadant om du spelar igen?"
