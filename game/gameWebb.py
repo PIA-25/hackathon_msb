@@ -5,6 +5,7 @@ import textwrap
 from backend.app.database.database import SessionLocal
 from backend.app.database.models import Scenario
 from backend.app.database.crud import save_user_choice_and_update_attributes
+from ai.video_generation import get_video
 
 
 # Hitta rätt sökväg till mock_data
@@ -83,9 +84,20 @@ def index():
     """)
 
     with ui.element('div').classes('w-full h-screen overflow-hidden'):
+        # TODO: fixa så att det hämtas från frontend/backend
+        user_info = {
+            "age": "21",
+            "gender": "male",
+        }
+        # Frivilligt, om man vill att videosen ska sparas lokalt
+        video_save_folder = "videos/"
+
         # Video element
-        video = ui.video(f'/mock_data/video0.mp4') \
-            .classes('absolute inset-0 w-full h-full object-cover')
+        video_info = get_video(user_info, 1, video_save_folder)
+        if video_info["video_exists"]:
+            video = ui.video(video_info["video_bytes"]).classes('absolute inset-0 w-full h-full object-cover')
+        else:
+            video = ui.video(f'/mock_data/video0.mp4').classes('absolute inset-0 w-full h-full object-cover')
 
         # CHOICE OVERLAY
         with ui.column().classes(
@@ -204,7 +216,11 @@ def index():
         if game.finished:
             end_overlay.visible = True
         else:
-            video.set_source(game.video_path(correct=True))
+            video_info = get_video(user_info, game.index, video_save_folder)
+            if video_info["video_exists"]:
+                video.set_source(video_info["video_bytes"])
+            else:
+                video.set_source(game.video_path(correct=True))
             video.run_method('play')
 
     video.run_method('play')

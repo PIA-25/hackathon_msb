@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 import os
 
-from utils import create_ai_prompt, save_video_locally, poll_video
+from ai.utils import create_ai_prompt, save_video_locally, poll_video
 
 
 load_dotenv()
@@ -80,7 +80,17 @@ def get_video(user_info: dict,
               scenario_number: int,
               video_folder: str | None = None):
 
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    try:
+        client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    except ValueError:
+        print("Couldn't connect to Google-Gemini! Check your API key!")
+        return {
+            "video_bytes": b"",
+            "uri": "",
+            "locally_downloaded": False,
+            "pause_at_seconds": 0,
+            "video_exists": False
+        }
 
     base_prompt = create_ai_prompt(
         user_info=user_info,
