@@ -5,7 +5,7 @@ A clean interface for the game engine to fetch and interact with game data.
 This module provides easy-to-use functions that return data in formats
 optimized for the NiceGUI game frontend.
 """
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Optional
 from dataclasses import dataclass, field
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
@@ -15,11 +15,7 @@ import logging
 from backend.app.database.crud import (
     get_scenario,
     get_choice_options,
-    get_level,
-    get_user,
-    save_user_choice_and_update_attributes,
-    get_user_attributes,
-    create_user
+    get_level
 )
 from backend.app.database.database import SessionLocal
 from backend.app.database import models
@@ -117,7 +113,7 @@ def get_db() -> Session:
 # -------------------------------------------------------
 
 class fetch_Game():
-    def fetch_scenario_for_game(scenario_id: int) -> Optional[GameScenario]:
+    def fetch_scenario_for_game(self, scenario_id: int) -> Optional[GameScenario]:
         """
         Fetch a single scenario with all its choices, formatted for the game engine.
 
@@ -165,7 +161,7 @@ class fetch_Game():
             db.close()
 
 
-    def fetch_level_scenarios(level_id: int) -> List[GameScenario]:
+    def fetch_level_scenarios(self, level_id: int) -> List[GameScenario]:
         """
         Fetch all scenarios for a specific level.
 
@@ -218,7 +214,7 @@ class fetch_Game():
             db.close()
 
 
-    def fetch_all_levels() -> List[GameLevel]:
+    def fetch_all_levels(self) -> List[GameLevel]:
         """
         Fetch all levels with their scenarios, ready for the game engine.
 
@@ -231,7 +227,7 @@ class fetch_Game():
 
             game_levels = []
             for level in levels:
-                scenarios = fetch_level_scenarios(level.level_id)
+                scenarios = self.fetch_level_scenarios(level.level_id)
                 game_levels.append(GameLevel(
                     level_id=level.level_id,
                     level_number=level.level_number,
@@ -247,7 +243,7 @@ class fetch_Game():
             db.close()
 
 
-    def fetch_all_scenarios_flat() -> List[Dict]:
+    def fetch_all_scenarios_flat(self) -> List[Dict]:
         """
         Fetch all scenarios as a flat list of dictionaries.
         This is the simplest format for the game engine, similar to your mock. json structure.

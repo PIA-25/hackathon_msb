@@ -32,7 +32,7 @@ def create_footer():
                 f'letter-spacing: 1px'
             )
             ui.link(
-            '© 2025 När Plikten Kallar - The Project Authors. All rights reserved.',
+            '© 2025-2026 När Plikten Kallar - The Project Authors. All rights reserved.',
             '/license'
             ).style(
                 f'color: {COLORS["text_muted"]}; '

@@ -4,7 +4,7 @@ from nicegui import ui, app
 import textwrap
 from backend.app.database.database import SessionLocal
 from backend.app.database.models import Scenario
-from backend.app.database.crud import save_user_choice_and_update_attributes, get_scenario, get_choice_options, get_user
+from backend.app.database.crud import save_user_choice_and_update_attributes, get_scenario, get_choice_options
 from ai.video_generation import get_video
 
 
@@ -149,7 +149,7 @@ def index():
         if video_info["video_exists"]:
             video = ui.video(video_info["video_bytes"]).classes('absolute inset-0 w-full h-full object-cover')
         else:
-            video = ui.video(f'/mock_data/video0.mp4').classes('absolute inset-0 w-full h-full object-cover')
+            video = ui.video('/mock_data/video0.mp4').classes('absolute inset-0 w-full h-full object-cover')
 
         # CHOICE OVERLAY
         with ui.column().classes(
@@ -277,8 +277,8 @@ def index():
                         # Tyst hoppa över om scenario inte finns i databasen
                         pass
                     elif not current_user_id:
-                        print(f"Varning: Ingen användare hittades. Valet kommer inte att sparas.")
-                        print(f"   Registrera dig först via frontend för att spara dina val.")
+                        print("Varning: Ingen användare hittades. Valet kommer inte att sparas.")
+                        print("   Registrera dig först via frontend för att spara dina val.")
                     else:
                         level_id = scenario_db.level_id
                         db_scenario_id = scenario_db.scenario_id
@@ -307,7 +307,7 @@ def index():
                                 print(f"Hittat {len(choice_attrs)} attribut som kommer att påverkas för choice_id {choice_id}")
                             else:
                                 print(f"Varning: Choice ID {choice_id} är inte kopplad till några attribut!")
-                                print(f"   Attributen kommer inte att uppdateras. Kolla choice_attributes tabellen.")
+                                print("   Attributen kommer inte att uppdateras. Kolla choice_attributes tabellen.")
                             
                             save_user_choice_and_update_attributes(
                                 db,
