@@ -1,2 +1,4 @@
 # README
-![När plikten kallar](docs/images/nar-plikten-kallar.png)
+<p align="center">
+  <img src="docs/images/nar-plikten-kallar.png" width="500">
+</p>
