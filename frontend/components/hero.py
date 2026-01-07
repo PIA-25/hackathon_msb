@@ -34,23 +34,15 @@ def create_hero_section():
         with ui.column().classes('items-center').style('position: relative; z-index: 1'):
             
             # Our icon for the game
-            ui.image('/assets/logo_icon.png').style(
-                'width: 160px; '
-                'height: 140px; '
+            ui.image('/assets/hackathon_msb.jpeg').style(
+                'width: 350px; '
+                'height: 350px; '
                 'margin-bottom: 2rem; '
-                f'filter: drop-shadow({EFFECTS["glow_medium"]})'
+                f'filter: drop-shadow({EFFECTS["glow_medium"]}) '
+                'text-align: center; '
             )
             
-            # Main title
-            ui.label('CRISIS MIND').style(
-                f'color: {COLORS["hero_title"]}; '
-                f'font-size: {SIZES["hero_title"]}; ' 
-                'font-weight: 700; '
-                'text-align: center; '
-                'letter-spacing: 15px; '
-                'text-shadow: 0 0 30px rgba(96, 165, 250, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6); '
-                'margin-bottom: 2.5rem'
-            )
+            
             
             # Subtitle
             ui.label('AI-Driven Beslutsanalys i Krissituationer').style(

@@ -11,7 +11,13 @@ load_dotenv()
 #fixa .env fil för att inte lägga in lösenord och användarnamn i koden så vi ej pushar det till github
 #fixa även logiken med database_url
 DATABASE_URL = os.getenv("DATABASE_URL")
-#DATABASE_URL = "postgresql://postgres:allansikder2005@localhost:5432/msbhack_test"
+# Fallback om .env inte är konfigurerad (endast för utveckling)
+if not DATABASE_URL:
+    DATABASE_URL = "postgresql://postgres:allansikder2005@localhost:5432/msbhack_test"
+    print("Warning: Using fallback DATABASE_URL. Please configure .env file!")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not configured. Please set it in .env file or environment variable.")
 
 try:
     engine = create_engine(DATABASE_URL, echo=False)  # echo=True loggar alla sql frågor till konsolen
@@ -61,11 +67,32 @@ def init_db():
     Används för att initialisera databasen första gången.
     Om tabellerna redan finns, migrerar den dem till nytt schema.
     """
+    # Se till att alla modeller är importerade så att de registreras i Base.metadata
+    # Detta måste göras INNAN create_all() anropas
+    try:
+        from backend.app.database import models  # noqa: F401
+        # Importera alla modellklasser explicit för att säkerställa registrering
+        from backend.app.database.models import (
+            User, Level, Scenario, ChoiceOption, UserChoice, Attribute,
+            user_attributes, choice_attributes
+        )
+    except ImportError as e:
+        print(f"Warning: Could not import models: {e}")
+        return
+    
     # Droppa alla tabeller först (varning: förlorar data!)
     # Base.metadata.drop_all(bind=engine)
     
     # Skapa alla tabeller med nytt schema
-    Base.metadata.create_all(bind=engine)
+    registered_tables = list(Base.metadata.tables.keys())
+    print(f"Creating {len(registered_tables)} tables: {', '.join(registered_tables)}")
+    
+    try:
+        Base.metadata.create_all(bind=engine)
+        print(f"Successfully created all tables!")
+    except Exception as e:
+        print(f"Error creating tables: {e}")
+        raise
     
     # Migrera users-tabellen - lägg till nya kolumner om de saknas
     try:
@@ -108,3 +135,28 @@ def init_db():
     except Exception as e:
         print(f"Migration note: {e}")
         # Fortsätt ändå - tabellerna kanske redan är korrekta
+    
+    # Kontrollera om databasen är tom och populera från mock.json om så är fallet
+    try:
+        from backend.app.database.models import Scenario, Attribute
+        db_temp = SessionLocal()
+        try:
+            scenario_count = db_temp.query(Scenario).count()
+            attribute_count = db_temp.query(Attribute).count()
+            
+            # Om inga scenarios eller attributes finns, populera från mock.json
+            if scenario_count == 0 or attribute_count == 0:
+                print("\nDatabase is empty. Populating from mock.json...")
+                from backend.app.database.populate_from_mock import populate_database
+                # Använd samma session för att undvika problem
+                populate_database(db=db_temp)
+                print("Database populated successfully!")
+            else:
+                print(f"\nDatabase already contains data: {scenario_count} scenarios, {attribute_count} attributes")
+        finally:
+            db_temp.close()
+    except Exception as e:
+        print(f"Note: Could not check/populate database: {e}")
+        import traceback
+        traceback.print_exc()
+        # Fortsätt ändå - detta är inte kritiskt

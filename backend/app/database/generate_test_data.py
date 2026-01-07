@@ -139,7 +139,7 @@ def generate_users(db: Session, count: int = 200) -> List[User]:
     
     db.add_all(users)
     db.flush()
-    print(f"✓ Created {len(users)} users")
+    print(f"Created {len(users)} users")
     return users
 
 
@@ -160,7 +160,7 @@ def generate_attributes(db: Session) -> List[Attribute]:
     
     db.add_all(attributes)
     db.flush()
-    print(f"✓ Created {len(attributes)} attributes")
+    print(f"Created {len(attributes)} attributes")
     return attributes
 
 

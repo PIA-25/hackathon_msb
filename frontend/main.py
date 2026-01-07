@@ -19,11 +19,18 @@ from components.features import create_features_section
 from components.stats import create_stats_section
 from components.footer import create_footer
 import os
+# Importera alla modeller FÖRST så att de registreras i Base.metadata
+from backend.app.database import models  # noqa: F401 - importerar alla modeller
 from backend.app.database.models import User, Level, Scenario, ChoiceOption, UserChoice, Attribute
 from backend.app.database.database import Base, engine, init_db
 from mock_data import mock_game
 
+# Importera spelet så att /game-routen registreras
+import game.gameWebb  # noqa: F401
+
 print("Creating database tables...")
+# Se till att alla modeller är importerade innan init_db() anropas
+# Genom att importera models-modulen ovan registreras alla modeller i Base.metadata
 init_db()
 print("Database tables created!")
 
