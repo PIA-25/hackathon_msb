@@ -31,7 +31,16 @@ def create_footer():
                 f'font-size: {SIZES["small"]}; '
                 f'letter-spacing: 1px'
             )
-            
+            ui.link(
+            '© 2025 När Plikten Kallar - The Project Authors. All rights reserved.',
+            '/license'
+            ).style(
+                f'color: {COLORS["text_muted"]}; '
+                f'font-size: {SIZES["small"]}; '
+                f'letter-spacing: 1px; '
+                f'text-decoration: none'
+                )
+
             # Social icons
             with ui.row().classes('gap-4'):
                 ui.icon('mail', size=SIZES['icon_small']).style(
